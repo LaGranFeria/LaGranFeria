@@ -102,7 +102,7 @@ const AppProvider = ({ children }) => {
       })
       .catch((err) => console.error(err.toString()));
 
-    connection.on("MensajeUpdateConfiguracion", async () => {
+    connection.on("MensajeUpdateConfiguracionDos", async () => {
       try {
         const response = await GetInfoConfiguracionLaGranFeria();
         const responseZeide = await GetInfoConfiguracionZeide();
