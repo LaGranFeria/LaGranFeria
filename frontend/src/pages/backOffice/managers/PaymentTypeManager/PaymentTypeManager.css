@@ -1,0 +1,39 @@
+#disabled:checked ~ .lbl-switch {
+  background-color: #198754;
+}
+
+#disabled:checked ~ .lbl-switch:after {
+  left: 28px;
+}
+
+#disabled {
+  display: none;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.checkbox-cont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.checkbox-input {
+  width: 18px;
+  height: 18px;
+  background-color: #6c757d !important;
+  border-radius: 100px !important;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  accent-color: #198754;
+}

@@ -1,0 +1,12 @@
+.loading-container-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 5px;
+}
+
+.text-primary {
+  color: #000000 !important;
+}

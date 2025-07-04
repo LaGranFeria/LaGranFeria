@@ -1,0 +1,152 @@
+.general-graphics {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.graphics-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: #212529b7;
+  padding: 20px;
+  gap: 20px;
+  border-radius: 25px;
+}
+
+.anuales-container-graphics {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.chart-anual-container {
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+  min-height: 380px !important;
+  height: 380px;
+  width: 500px;
+}
+
+.year {
+  cursor: pointer;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  outline: none;
+  padding: 0 6px;
+  color: #000000;
+  height: 28px;
+}
+
+.filter-container-graphics {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.filter-container-graphics2 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.btn-search-dates {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid lightgrey;
+  width: 35px;
+  border-radius: 5px;
+  padding: 0 6px;
+  height: 28px;
+}
+
+.lupa-svg {
+  height: 22px;
+  width: 22px;
+  fill: #000;
+}
+
+.loading-graphics-div {
+  background-color: #808080e8;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  border-radius: 25px;
+  transform: translate(-20px, -20px);
+}
+
+.filter-container-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.variable-select {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.div-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.filter-container-div2 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+}
+
+@media (max-width: 1170px) {
+  .anuales-container-graphics {
+    flex-direction: column;
+  }
+
+  .filter-container-graphics2 {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .chart-anual-container {
+    height: 250px;
+    width: 400px;
+  }
+}
+
+@media (max-width: 505px) {
+  .filter-container-div2 {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .chart-anual-container {
+    height: 250px;
+    width: 350px;
+  }
+}

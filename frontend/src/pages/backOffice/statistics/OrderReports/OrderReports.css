@@ -1,0 +1,289 @@
+.btn-filter-date {
+  border-radius: 50px;
+  background-color: #009ee3;
+  margin-top: 5px;
+  border: 1px solid #009ee3;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btn-clear-filter-date {
+  border-radius: 50px;
+  background-color: #c5c5c5;
+  margin-top: 10px;
+  border: 1px solid #c5c5c5;
+  color: #000000;
+  font-weight: 600;
+}
+
+.filters-left4 {
+  gap: 5px;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.pagination-count-filter-date {
+  padding: 15px;
+  height: 250px;
+  background-color: #212529;
+  display: flex;
+  flex-direction: column;
+  min-width: 170px;
+  border-radius: 15px;
+  width: 200px;
+  justify-content: center;
+  position: relative;
+}
+
+.loading-sellers-div {
+  background-color: #808080e8;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  border-radius: 15px;
+  transform: translate(-15px, 0px);
+}
+
+.loading-abonos-entregas-div {
+  background-color: #808080e8;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  border-radius: 15px;
+  transform: translate(-15px, 0px);
+  padding: 10px;
+}
+
+.pagination-count-filter-date2 {
+  padding: 15px;
+  height: 250px;
+  background-color: #212529b7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  min-width: 170px;
+  width: 200px;
+}
+
+.p-filter-date {
+  color: #ffffff;
+  margin: 0;
+  font-weight: 300;
+}
+
+.p-filter-date-strong {
+  color: #ffffff;
+  margin: 0;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+}
+
+.form-group-input-filter-date {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.search-input-filter-date {
+  cursor: pointer;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  padding: 0 6px;
+  color: #000000;
+}
+
+.filter-report-div {
+  gap: 5px !important;
+}
+
+.btn-show-orders {
+  justify-content: center;
+  align-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  margin: 5px;
+  font-weight: 700;
+  transition: all 0.4s;
+}
+
+.btn-show-billing {
+  justify-content: center;
+  align-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  margin: 5px;
+  margin-left: 0px;
+  font-weight: 700;
+  transition: all 0.4s;
+}
+
+.btn-highlight {
+  width: 45px !important;
+  height: 45px !important;
+  border: 3px solid rgb(0, 200, 0);
+}
+
+.show-orders {
+  transform: translate(-6px, -3px);
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+  transition: all 0.4s;
+}
+
+.header-excel-report {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-show-top {
+  position: absolute;
+  transform: translate(78px, 102px);
+  justify-content: center;
+  align-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  margin: 5px;
+  font-weight: 700;
+}
+
+.puesto-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+}
+
+.p-filter-date-strong-1-puesto {
+  color: #dfbe08;
+  font-weight: 900;
+  font-size: 50px;
+  text-align: center;
+}
+
+.p-filter-date-strong-2-puesto {
+  color: #bbbbbb;
+  font-weight: 900;
+  font-size: 50px;
+  text-align: center;
+}
+
+.p-filter-date-strong-3-puesto {
+  color: #a5725a;
+  font-weight: 900;
+  font-size: 50px;
+  text-align: center;
+}
+
+.p-filter-date-strong-1 {
+  color: #000000;
+  margin: 0px 5px;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+}
+
+.p-filter-date-1 {
+  color: rgb(0, 0, 0);
+  margin: 0;
+  font-weight: 300;
+}
+
+.margin-right{
+  margin-right: 30px;
+}
+
+.img-producto {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+  border: 1px solid #929292;
+}
+
+.img-producto:hover {
+  cursor: pointer;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+  background-color: #e6e6e6;
+  border: none;
+  height: 36px;
+  border-radius: 50px;
+  padding: 10px;
+  margin: 0px;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.filtro-activo {
+  background-color: #b4ffae;
+  border: 1px solid #b4ffae;
+}
+
+.tags-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.loading-reports-div {
+  background-color: #808080e8;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.lupa-reportes-svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+
+.hidden-billing {
+  display: none !important;
+}

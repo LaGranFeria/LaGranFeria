@@ -1,0 +1,15 @@
+.list-img-category {
+  width: 180px;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 2px solid #000000;
+  cursor: pointer;
+}
+
+@media (max-width: 1170px) {
+  .subcategory-image-text{
+    flex-direction: column !important;
+  }
+}

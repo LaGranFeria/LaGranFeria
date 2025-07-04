@@ -1,0 +1,284 @@
+.items-collapse {
+  padding: 5px 0;
+  margin: 0;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.items-collapse:hover {
+  text-decoration: underline;
+}
+
+.items-collapse {
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.items-collapse.active {
+  font-weight: 600;
+}
+
+.items-collapse2 {
+  padding: 5px 0;
+  margin: 0;
+  cursor: pointer;
+  font-weight: 300;
+}
+
+.items-collapse2:hover {
+  text-decoration: underline;
+}
+
+.items-collapse2 {
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.items-collapse2.active {
+  font-weight: 600;
+}
+
+.table-list-none {
+  display: none;
+}
+
+.porc-text {
+  white-space: nowrap;
+}
+
+.porc-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nombre-input,
+.password-input,
+.desc-input,
+.divisa-input,
+.tipoPrecio-input {
+  margin-bottom: 25px;
+}
+
+.header-excel {
+  width: 33.33%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-excel {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  border-radius: 50px;
+  margin: 5px;
+}
+
+.excel {
+  transform: translateX(-3px);
+  width: 23px;
+  height: 23px;
+  fill: #ffffff;
+}
+
+.input-textarea {
+  min-height: 100px;
+}
+
+.input-group-svg-divisa {
+  height: 20px;
+  width: 20px;
+}
+
+.input-group-svg-divisa-big {
+  height: 23px;
+  width: 23px;
+}
+
+.input-group-svg-divisa-big2 {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
+.input-group-svg-prom-dest {
+  height: 22px;
+  width: 22px;
+  fill: #353c42;
+}
+
+.input-group-svg-prom-activo {
+  fill: #e42626;
+}
+
+.input-group-svg-dest-activo {
+  fill: #e2c20d;
+}
+
+.precio-pesos {
+  background-color: #6c757d;
+  border-radius: 5px;
+  padding: 1px;
+  margin: 0px;
+}
+
+.stock-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zero-stock {
+  background-color: #422323e0 !important;
+  text-align: center;
+}
+
+.hidden-product {
+  background-color: #423f23e0 !important;
+  text-align: center;
+}
+
+.zero-stock-hidden {
+  background-color: #232942e0 !important;
+  text-align: center;
+}
+
+.divisa-div {
+  margin-bottom: 0px !important;
+}
+
+.establecer-cotizacion-div {
+  justify-content: flex-start;
+}
+
+.svg-btn {
+  border-radius: 30px;
+  width: 70px;
+  height: 25px;
+  margin: 5px;
+}
+
+.svg {
+  -webkit-transform: translate(0px, -8px);
+  transform: translate(0px, -8px);
+  width: 20px;
+  height: 20px;
+  fill: #ffffff;
+}
+
+.stock-pendiente {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  color: orange;
+  text-wrap: nowrap;
+}
+
+.prom-dest {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+  gap: 5px;
+}
+
+.cate-subcate {
+  display: flex;
+  flex-direction: column !important;
+}
+
+.cate-info {
+  margin: 0px;
+}
+
+.subcate {
+  margin-top: 15px;
+  background-color: #5b435e;
+  border-radius: 5px;
+  padding: 1px;
+}
+
+#nostock:checked ~ .lbl-switch {
+  background-color: #198754;
+}
+
+#nostock:checked ~ .lbl-switch:after {
+  left: 28px;
+}
+
+#nostock {
+  display: none;
+}
+
+.subcategory-collapse {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+}
+
+.cantidad-mayorista {
+  color: rgb(255, 217, 0);
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.minorista {
+  background-color: #dacea7;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 25px;
+}
+
+.mayorista123 {
+  background-color: #cfcfcf;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 25px;
+}
+
+.sintipoprecio {
+  margin-bottom: 0px !important;
+}
+
+.link-hide-mayorista {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.titulo-modal-productos {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  margin-top: 0.8em;
+}
+
+.modal-title-productos {
+  padding: 0px;
+}
+
+@media (max-width: 1350px) {
+  .table-name-prom-dest {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stock-div {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {
+  .header-excel {
+    width: auto;
+  }
+}

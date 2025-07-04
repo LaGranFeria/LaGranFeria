@@ -1,0 +1,14 @@
+.loading-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: linear-gradient(#ffffffa2, #ffffffa2),
+    url(/src/assets/images/background.jpg);
+}
+
+.loader {
+  width: 150px;
+  pointer-events: none;
+}

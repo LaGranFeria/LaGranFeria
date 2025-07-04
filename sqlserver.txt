@@ -1,0 +1,32 @@
+CREATE TABLE dbo.configuracionesdos (
+    id_configuracion INT IDENTITY(1,1) PRIMARY KEY,
+    direccion NVARCHAR(MAX),
+    url_direccion NVARCHAR(MAX),
+    horarios NVARCHAR(MAX),
+    cbu NVARCHAR(MAX),
+    alias NVARCHAR(MAX),
+    whatsapp NVARCHAR(MAX) DEFAULT '0' NOT NULL,
+    telefono NVARCHAR(MAX),
+    facebook NVARCHAR(MAX),
+    url_facebook NVARCHAR(MAX),
+    instagram NVARCHAR(MAX),
+    url_instagram NVARCHAR(MAX),
+    monto_mayorista REAL DEFAULT 0 NOT NULL,
+    url_logo NVARCHAR(MAX),
+    codigo NVARCHAR(MAX),
+    aviso NVARCHAR(MAX),
+    mantenimiento BIT DEFAULT 0 NOT NULL
+);
+
+INSERT INTO dbo.configuracionesdos (direccion, url_direccion, horarios, cbu, alias, whatsapp, telefono, facebook, url_facebook, instagram, url_instagram, monto_mayorista, url_logo, codigo, aviso, mantenimiento)
+VALUES
+(N'San Martín 145, Córdoba, Argentina', N'https://www.google.com/maps/dir//San+Mart%C3%ADn+145,+X5000IWC+C%C3%B3rdoba/@-31.4142897,-64.2658344,17984m/data=!3m2!1e3!4b1!4m8!4m7!1m0!1m5!1m1!1s0x9432a282d2beb87f:0x7c4a10da81582258!2m2!1d-64.1834331!2d-31.4143161?entry=ttu&g_ep=EgoyMDI1MDYzMC4wIKXMDSoASAFQAw%3D%3D', 
+N'Lunes a Viernes de 09:00 a 19:00 hs y Sábados de 09:00 a 15:00 hs', 
+N'123', N'TUALIAS', N'3513858870', N'351 385 8870', 
+N'La Gran Feria', N'https://www.facebook.com/p/La-Gran-Feria-100063696833813', 
+N'lagranferia.ok', N'https://www.instagram.com/lagranferia.ok', 
+10000, 
+N'https://yourfiles.cloud/uploads/f642b93e351eba82b927f3d0677e49d0/logo.png', 
+N'DESCUENTO', 
+N'Este es un aviso OPCIONAL de prueba, puede quitarlo desde configuraciones!', 
+0);

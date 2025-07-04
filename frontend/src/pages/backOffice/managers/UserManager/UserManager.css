@@ -1,0 +1,87 @@
+.activo2 {
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+#activo:checked ~ .lbl-switch {
+  background-color: #198754;
+}
+
+#hidden:checked ~ .lbl-switch {
+  background-color: #198754;
+}
+
+#pending:checked ~ .lbl-switch {
+  background-color: #198754;
+}
+
+#inactive:checked ~ .lbl-switch {
+  background-color: #198754;
+}
+
+#activo:checked ~ .lbl-switch:after {
+  left: 28px;
+}
+
+#hidden:checked ~ .lbl-switch:after {
+  left: 28px;
+}
+
+#pending:checked ~ .lbl-switch:after {
+  left: 28px;
+}
+
+#inactive:checked ~ .lbl-switch:after {
+  left: 28px;
+}
+
+#activo {
+  display: none;
+}
+
+#hidden {
+  display: none;
+}
+
+#pending {
+  display: none;
+}
+
+#inactive {
+  display: none;
+}
+
+.nombre-input,
+.password-input {
+  margin-bottom: 25px;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-input2 {
+  position: relative;
+  margin-bottom: 0px;
+}
+
+.visibility2 {
+  position: absolute;
+  top: 12px;
+  right: 13px;
+  transform: translate(0, -50%);
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.pending {
+  display: none;
+}
+
+.inactive {
+  display: none;
+}

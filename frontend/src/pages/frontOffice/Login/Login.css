@@ -1,0 +1,186 @@
+.login-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  object-fit: contain;
+  padding: 90px 0 100px;
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 10%;
+  max-width: 700px;
+}
+
+.title-login {
+  color: #009ee3;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.login-column {
+  width: 100%;
+}
+
+.login-button2 {
+  border: 2px solid #009ee3;
+  background-color: #009ee3;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  height: 100%;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.login-button2:hover {
+  background-color: #fff;
+  color: #009ee3;
+}
+
+.login-button {
+  margin-top: 20px;
+  width: 200px;
+  height: 47px;
+  border: 2px solid #009ee3;
+  background-color: #009ee3;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #fff;
+  color: #009ee3;
+}
+
+.show-btn {
+  fill: #000000;
+  width: 25px;
+  transition: fill 0.3s ease;
+}
+
+.show-btn:hover {
+  fill: #929292;
+}
+
+.hide-btn {
+  fill: #000000;
+  width: 24px;
+  transition: fill 0.3s ease;
+}
+
+.hide-btn:hover {
+  fill: #929292;
+}
+
+.visibility {
+  position: absolute;
+  top: 23px;
+  right: 13px;
+  transform: translate(0, -50%);
+  cursor: pointer;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-field-subject {
+  position: relative;
+  height: 45px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.login-send-button {
+  height: 47px;
+}
+
+.contact-field-email {
+  height: 45px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.contact-input {
+  border: 1px solid #d3d3d3;
+  border-radius: 6px;
+  height: 100%;
+  outline: none;
+  padding: 0 15px;
+  width: 100%;
+}
+
+.contact-input-psw {
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+  outline: none;
+  padding: 0 50px 0 15px;
+}
+
+.p-forgot-password {
+  margin-top: 10px;
+  white-space: nowrap;
+}
+
+.forgot-password {
+  font-size: 14px;
+  white-space: nowrap;
+  text-decoration: none;
+  margin-top: 10px;
+  color: #000000;
+  font-weight: 500;
+}
+
+.create-user-password {
+  font-size: 14px;
+  white-space: nowrap;
+  text-decoration: none;
+  margin-top: 10px;
+  color: #000000;
+  text-align: center;
+  font-weight: 500;
+}
+
+.logout-svg {
+  width: 23px;
+  height: 23px;
+  fill: #fff;
+  margin-right: 5px;
+  transition: all 0.3s ease;
+}
+
+.login-button:hover .logout-svg {
+  fill: #000000;
+}
+
+@media (max-width: 420px) {
+  .login-button {
+    width: 180px;
+  }
+}
+
+@media (max-width: 300px) {
+  .title-login {
+    font-size: 20px;
+  }
+}
