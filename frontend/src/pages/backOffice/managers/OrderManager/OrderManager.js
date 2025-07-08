@@ -1406,9 +1406,11 @@ function OrderManager() {
                             {listaEntregas &&
                               Array.from(listaEntregas).map((opts, i) => {
                                 const shouldShowEnvio =
-                                  (nombreEntrega
+                                  ((nombreEntrega
                                     .toLowerCase()
-                                    .includes("local") &&
+                                    .includes("local") || nombreEntrega
+                                    .toLowerCase()
+                                    .includes("depósito")) &&
                                     opts.disponibilidad !== 2) ||
                                   (nombreEntrega
                                     .toLowerCase()
@@ -1525,9 +1527,11 @@ function OrderManager() {
                             {listaAbonos &&
                               Array.from(listaAbonos).map((opts, i) => {
                                 const shouldShowEnvio =
-                                  (nombreEntrega
+                                  ((nombreEntrega
                                     .toLowerCase()
-                                    .includes("local") &&
+                                    .includes("local") || nombreEntrega
+                                    .toLowerCase()
+                                    .includes("depósito")) &&
                                     opts.disponibilidad !== 2) ||
                                   (nombreEntrega
                                     .toLowerCase()
@@ -2016,7 +2020,7 @@ function OrderManager() {
                           className={`table-name table-name-orders ${
                             order.entrega.includes("domicilio")
                               ? "domicilio"
-                              : order.entrega.includes("local")
+                              : order.entrega.includes("local") || order.entrega.includes("depósito")
                               ? "retiro-local"
                               : "domicilio"
                           }`}
@@ -2043,7 +2047,7 @@ function OrderManager() {
                           className={`table-name table-name-orders ${
                             order.costoEnvio > 0
                               ? "domicilio"
-                              : order.entrega.includes("local")
+                              : order.entrega.includes("local") || order.entrega.includes("depósito")
                               ? "retiro-local"
                               : "domicilio"
                           }`}

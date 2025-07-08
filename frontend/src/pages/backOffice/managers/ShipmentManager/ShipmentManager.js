@@ -137,27 +137,27 @@ function ShipmentManager() {
   }, []);
   //#endregion
 
-  // const handleCheckboxChangeCatalogo = (e) => {
-  //   const value = e.target.value;
-  //   const isChecked = e.target.checked;
+  const handleCheckboxChangeCatalogo = (e) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
 
-  //   setDisponibilidadCatalogo((prevState) => {
-  //     // Si el checkbox se selecciona y es "Entrega por local"
-  //     if (value === "1" && isChecked) {
-  //       return prevState.includes("2") ? ["1", "2"] : ["1"];
-  //     }
-  //     // Si el checkbox se selecciona y es "Entrega a domicilio"
-  //     if (value === "2" && isChecked) {
-  //       return prevState.includes("1") ? ["1", "2"] : ["2"];
-  //     }
-  //     // Si ambos checkboxes están seleccionados
-  //     if (isChecked && prevState.includes("1") && prevState.includes("2")) {
-  //       return ["1", "2"];
-  //     }
-  //     // Si el checkbox se deselecciona
-  //     return prevState.filter((item) => item !== value);
-  //   });
-  // };
+    setDisponibilidadCatalogo((prevState) => {
+      // Si el checkbox se selecciona y es "Entrega por local"
+      if (value === "1" && isChecked) {
+        return prevState.includes("2") ? ["1", "2"] : ["1"];
+      }
+      // Si el checkbox se selecciona y es "Entrega a domicilio"
+      if (value === "2" && isChecked) {
+        return prevState.includes("1") ? ["1", "2"] : ["2"];
+      }
+      // Si ambos checkboxes están seleccionados
+      if (isChecked && prevState.includes("1") && prevState.includes("2")) {
+        return ["1", "2"];
+      }
+      // Si el checkbox se deselecciona
+      return prevState.filter((item) => item !== value);
+    });
+  };
 
   //#region Función para borrar cualquier filtro
   const ClearFilter = () => {
@@ -341,23 +341,23 @@ function ShipmentManager() {
       }
       return false;
     } 
-    // else if (
-    //   disponibilidadCatalogo === "" ||
-    //   (Array.isArray(disponibilidadCatalogo) &&
-    //     disponibilidadCatalogo.length === 0)
-    // ) {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Debe indicar en que catálogo se encuentra disponible",
-    //     text: "Clickeé en el/los botón/es de los catálogos donde se encuentre disponible",
-    //     confirmButtonText: "Aceptar",
-    //     confirmButtonColor: "#f27474",
-    //   });
-    //   if (modalTitle === "Registrar Forma de entrega") {
-    //     ShowSaveButton();
-    //   }
-    //   return false;
-    // }
+    else if (
+      disponibilidadCatalogo === "" ||
+      (Array.isArray(disponibilidadCatalogo) &&
+        disponibilidadCatalogo.length === 0)
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Debe indicar en que catálogo se encuentra disponible",
+        text: "Clickeé en el/los botón/es de los catálogos donde se encuentre disponible",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      });
+      if (modalTitle === "Registrar Forma de entrega") {
+        ShowSaveButton();
+      }
+      return false;
+    }
     return true;
   }
   //#endregion
@@ -458,7 +458,14 @@ function ShipmentManager() {
             habilitado: habilitado,
             costo: costo,
             nombre: `${nombre.charAt(0).toUpperCase() + nombre.slice(1)}`,
-            disponibilidadCatalogo: 2,
+            disponibilidadCatalogo:
+              disponibilidadCatalogo.length === 0
+                ? ""
+                : disponibilidadCatalogo.length === 1
+                ? disponibilidadCatalogo.includes("1")
+                  ? 1
+                  : 2
+                : 3,
             aclaracion: `${
               (aclaracion ?? "").charAt(0).toUpperCase() +
               (aclaracion ?? "").slice(1)
@@ -767,7 +774,7 @@ function ShipmentManager() {
                         ></label>
                       </div>
 
-                      {/* <div className="form-group">
+                      <div className="form-group">
                         <label
                           className="label selects"
                           htmlFor="disponibilidadCatalogo"
@@ -787,7 +794,7 @@ function ShipmentManager() {
                               onChange={handleCheckboxChangeCatalogo}
                             />
                             <label htmlFor="catalogoMinorista">
-                              Catálogo Minorista
+                              LGF
                             </label>
                           </div>
 
@@ -802,11 +809,11 @@ function ShipmentManager() {
                               onChange={handleCheckboxChangeCatalogo}
                             />
                             <label htmlFor="catalogoMayorista">
-                              Catálogo Mayorista
+                              Zeide
                             </label>
                           </div>
                         </div>
-                      </div> */}
+                      </div>
 
                       <div className="form-group">
                         <label id="urlImagenLabel" className="label">
@@ -1076,9 +1083,9 @@ function ShipmentManager() {
                   <th className="table-title" scope="col">
                     Habilitada
                   </th>
-                  {/* <th className="table-title" scope="col">
+                  <th className="table-title" scope="col">
                     Disponibilidad Catálogo
-                  </th> */}
+                  </th>
                   <th className="table-title" scope="col">
                     Imagen
                   </th>
@@ -1106,7 +1113,7 @@ function ShipmentManager() {
                           className={`table-name ${
                             shipmentType.nombre.includes("domicilio")
                               ? "domicilio"
-                              : shipmentType.nombre.includes("local")
+                              : shipmentType.nombre.includes("local") || shipmentType.nombre.includes("depósito")
                               ? "retiro-local"
                               : "domicilio"
                           }`}
@@ -1117,7 +1124,7 @@ function ShipmentManager() {
                           className={`table-name ${
                             shipmentType.nombre.includes("domicilio")
                               ? "domicilio"
-                              : shipmentType.nombre.includes("local")
+                              : shipmentType.nombre.includes("local") || shipmentType.nombre.includes("depósito")
                               ? "retiro-local"
                               : "domicilio"
                           }`}
@@ -1128,7 +1135,7 @@ function ShipmentManager() {
                           className={`table-name ${
                             shipmentType.nombre.includes("domicilio")
                               ? "domicilio"
-                              : shipmentType.nombre.includes("local")
+                              : shipmentType.nombre.includes("local") || shipmentType.nombre.includes("depósito")
                               ? "retiro-local"
                               : "domicilio"
                           }`}
@@ -1152,13 +1159,13 @@ function ShipmentManager() {
                           </td>
                         )}
 
-                        {/* <td className="table-name">
+                        <td className="table-name">
                           {shipmentType.disponibilidadCatalogo === 1
-                            ? "Catálogo minorista"
+                            ? "LGF"
                             : shipmentType.disponibilidadCatalogo === 2
-                            ? "Catálogo mayorista"
-                            : "Catálogo minorista y mayorista"}
-                        </td> */}
+                            ? "Zeide"
+                            : "LGF y Zeide"}
+                        </td>
                         <td className="table-name">
                           {shipmentType.urlImagen ? (
                             <img

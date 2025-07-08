@@ -4989,12 +4989,7 @@ const CatalogueCart = () => {
                               {listaFormasEntrega &&
                                 Array.from(listaFormasEntrega).map(
                                   (opts, i) => {
-                                    const shouldShowCatalogo =
-                                      pathname.includes("minorista")
-                                        ? opts.disponibilidadCatalogo !== 2
-                                        : pathname.includes("mayorista")
-                                        ? opts.disponibilidadCatalogo !== 1
-                                        : true;
+                                    const shouldShowCatalogo = [1, 3].includes(opts.disponibilidadCatalogo);
 
                                     return shouldShowCatalogo ? (
                                       <option
@@ -5143,12 +5138,7 @@ const CatalogueCart = () => {
                                         opts.disponibilidad !== 1) ||
                                       opts.disponibilidad === 3;
 
-                                    const shouldShowCatalogo =
-                                      pathname.includes("minorista")
-                                        ? opts.disponibilidadCatalogo !== 2
-                                        : pathname.includes("mayorista")
-                                        ? opts.disponibilidadCatalogo !== 1
-                                        : true;
+                                    const shouldShowCatalogo = [1, 3].includes(opts.disponibilidadCatalogo);
 
                                     const shouldShow =
                                       shouldShowEnvio && shouldShowCatalogo;

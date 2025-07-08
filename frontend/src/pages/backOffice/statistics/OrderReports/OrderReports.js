@@ -1790,7 +1790,7 @@ function OrderReports() {
                           className={`table-name table-name-orders ${
                             order.entrega.includes("domicilio")
                               ? "domicilio"
-                              : order.entrega.includes("local")
+                              : order.entrega.includes("local") || order.entrega.includes("depósito")
                               ? "retiro-local"
                               : "domicilio"
                           }`}
@@ -1817,7 +1817,7 @@ function OrderReports() {
                           className={`table-name table-name-orders ${
                             order.costoEnvio > 0
                               ? "domicilio"
-                              : order.entrega.includes("local")
+                              : order.entrega.includes("local") || order.entrega.includes("depósito")
                               ? "retiro-local"
                               : "domicilio"
                           }`}
@@ -1908,7 +1908,7 @@ function OrderReports() {
                         className={`table-name table-name-orders ${
                           order.entrega.includes("domicilio")
                             ? "domicilio"
-                            : order.entrega.includes("local")
+                            : order.entrega.includes("local") || order.entrega.includes("depósito")
                             ? "retiro-local"
                             : "domicilio"
                         }`}
@@ -1931,7 +1931,7 @@ function OrderReports() {
                         className={`table-name table-name-orders ${
                           order.costoEnvio > 0
                             ? "domicilio"
-                            : order.entrega.includes("local")
+                            : order.entrega.includes("local") || order.entrega.includes("depósito")
                             ? "retiro-local"
                             : "domicilio"
                         }`}

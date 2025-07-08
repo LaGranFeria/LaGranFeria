@@ -147,27 +147,27 @@ function PaymentTypeManager() {
     });
   };
 
-  // const handleCheckboxChangeCatalogo = (e) => {
-  //   const value = e.target.value;
-  //   const isChecked = e.target.checked;
+  const handleCheckboxChangeCatalogo = (e) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
 
-  //   setDisponibilidadCatalogo((prevState) => {
-  //     // Si el checkbox se selecciona y es "Entrega por local"
-  //     if (value === "1" && isChecked) {
-  //       return prevState.includes("2") ? ["1", "2"] : ["1"];
-  //     }
-  //     // Si el checkbox se selecciona y es "Entrega a domicilio"
-  //     if (value === "2" && isChecked) {
-  //       return prevState.includes("1") ? ["1", "2"] : ["2"];
-  //     }
-  //     // Si ambos checkboxes están seleccionados
-  //     if (isChecked && prevState.includes("1") && prevState.includes("2")) {
-  //       return ["1", "2"];
-  //     }
-  //     // Si el checkbox se deselecciona
-  //     return prevState.filter((item) => item !== value);
-  //   });
-  // };
+    setDisponibilidadCatalogo((prevState) => {
+      // Si el checkbox se selecciona y es "Entrega por local"
+      if (value === "1" && isChecked) {
+        return prevState.includes("2") ? ["1", "2"] : ["1"];
+      }
+      // Si el checkbox se selecciona y es "Entrega a domicilio"
+      if (value === "2" && isChecked) {
+        return prevState.includes("1") ? ["1", "2"] : ["2"];
+      }
+      // Si ambos checkboxes están seleccionados
+      if (isChecked && prevState.includes("1") && prevState.includes("2")) {
+        return ["1", "2"];
+      }
+      // Si el checkbox se deselecciona
+      return prevState.filter((item) => item !== value);
+    });
+  };
 
   //#region Función para borrar cualquier filtro
   const ClearFilter = () => {
@@ -337,23 +337,23 @@ function PaymentTypeManager() {
       }
       return false;
     } 
-    // else if (
-    //   disponibilidadCatalogo === "" ||
-    //   (Array.isArray(disponibilidadCatalogo) &&
-    //     disponibilidadCatalogo.length === 0)
-    // ) {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "Debe indicar en que catálogo se encuentra disponible",
-    //     text: "Clickeé en el/los botón/es de los catálogos donde se encuentre disponible",
-    //     confirmButtonText: "Aceptar",
-    //     confirmButtonColor: "#f27474",
-    //   });
-    //   if (modalTitle === "Registrar Medio de pago") {
-    //     ShowSaveButton();
-    //   }
-    //   return false;
-    // } 
+    else if (
+      disponibilidadCatalogo === "" ||
+      (Array.isArray(disponibilidadCatalogo) &&
+        disponibilidadCatalogo.length === 0)
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Debe indicar en que catálogo se encuentra disponible",
+        text: "Clickeé en el/los botón/es de los catálogos donde se encuentre disponible",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      });
+      if (modalTitle === "Registrar Medio de pago") {
+        ShowSaveButton();
+      }
+      return false;
+    } 
     else if (
       disponibilidad === "" ||
       (Array.isArray(disponibilidad) && disponibilidad.length === 0)
@@ -472,7 +472,14 @@ function PaymentTypeManager() {
                   ? 1
                   : 2
                 : 3,
-            disponibilidadCatalogo: 2
+            disponibilidadCatalogo:
+              disponibilidadCatalogo.length === 0
+                ? ""
+                : disponibilidadCatalogo.length === 1
+                ? disponibilidadCatalogo.includes("1")
+                  ? 1
+                  : 2
+                : 3,
           },
           headers
         );
@@ -747,7 +754,7 @@ function PaymentTypeManager() {
                         ></label>
                       </div>
 
-                      {/* <div className="form-group">
+                      <div className="form-group">
                         <label
                           className="label selects"
                           htmlFor="disponibilidadCatalogo"
@@ -767,7 +774,7 @@ function PaymentTypeManager() {
                               onChange={handleCheckboxChangeCatalogo}
                             />
                             <label htmlFor="catalogoMinorista">
-                              Catálogo Minorista
+                              LGF
                             </label>
                           </div>
 
@@ -782,11 +789,11 @@ function PaymentTypeManager() {
                               onChange={handleCheckboxChangeCatalogo}
                             />
                             <label htmlFor="catalogoMayorista">
-                              Catálogo Mayorista
+                              Zeide
                             </label>
                           </div>
                         </div>
-                      </div> */}
+                      </div>
 
                       <div className="form-group">
                         <label
@@ -1061,9 +1068,9 @@ function PaymentTypeManager() {
                   <th className="table-title" scope="col">
                     Habilitado
                   </th>
-                  {/* <th className="table-title" scope="col">
+                  <th className="table-title" scope="col">
                     Disponibilidad Catálogo
-                  </th> */}
+                  </th>
                   <th className="table-title" scope="col">
                     Disponibilidad Entrega
                   </th>
@@ -1107,13 +1114,13 @@ function PaymentTypeManager() {
                           </td>
                         )}
 
-                        {/* <td className="table-name">
+                        <td className="table-name">
                           {paymentType.disponibilidadCatalogo === 1
-                            ? "Catálogo minorista"
+                            ? "LGF"
                             : paymentType.disponibilidadCatalogo === 2
-                            ? "Catálogo mayorista"
-                            : "Catálogo minorista y mayorista"}
-                        </td> */}
+                            ? "Zeide"
+                            : "LGF y Zeide"}
+                        </td>
 
                         <td className="table-name">
                           {paymentType.disponibilidad === 1
