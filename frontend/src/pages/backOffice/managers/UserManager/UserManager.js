@@ -57,6 +57,10 @@ function UserManager() {
   const [email, setEmail] = useState("");
   const [prevEmail, setPrevEmail] = useState("");
 
+  const [disponibilidadCatalogo, setDisponibilidadCatalogo] = useState("");
+  const [prevDisponibilidadCatalogo, setPrevDisponibilidadCatalogo] =
+    useState("");
+
   const [password, setPassword] = useState("");
 
   const [passwordRepeat, setPasswordRepeat] = useState("");
@@ -416,6 +420,28 @@ function UserManager() {
   };
   //#endregion
 
+  const handleCheckboxChangeCatalogo = (e) => {
+    const value = e.target.value;
+    const isChecked = e.target.checked;
+
+    setDisponibilidadCatalogo((prevState) => {
+      // Si el checkbox se selecciona y es "Entrega por depósito"
+      if (value === "1" && isChecked) {
+        return prevState.includes("2") ? ["1", "2"] : ["1"];
+      }
+      // Si el checkbox se selecciona y es "Entrega a domicilio"
+      if (value === "2" && isChecked) {
+        return prevState.includes("1") ? ["1", "2"] : ["2"];
+      }
+      // Si ambos checkboxes están seleccionados
+      if (isChecked && prevState.includes("1") && prevState.includes("2")) {
+        return ["1", "2"];
+      }
+      // Si el checkbox se deselecciona
+      return prevState.filter((item) => item !== value);
+    });
+  };
+
   //#region Función para limpiar los filtros
   const ClearFilter = () => {
     setUsers(originalUsersList); // trae la lista de usuarios original, sin ningun filtro
@@ -523,6 +549,7 @@ function UserManager() {
     setPasswordRepeat("");
     setRol("");
     setActivo("");
+    setDisponibilidadCatalogo("");
   }
   //#endregion
 
@@ -562,6 +589,18 @@ function UserManager() {
       setRol(5);
     } else if (user.rol === "Predeterminado") {
       setRol(6);
+    }
+
+    const disponibilidadCatalogoValue = user.disponibilidadCatalogo;
+    if (disponibilidadCatalogoValue === 1) {
+      setDisponibilidadCatalogo(["1"]);
+      setPrevDisponibilidadCatalogo(["1"]);
+    } else if (disponibilidadCatalogoValue === 2) {
+      setDisponibilidadCatalogo(["2"]);
+      setPrevDisponibilidadCatalogo(["2"]);
+    } else if (disponibilidadCatalogoValue === 3) {
+      setDisponibilidadCatalogo(["1", "2"]);
+      setPrevDisponibilidadCatalogo(["1", "2"]);
     }
 
     setActivo(user.activo);
@@ -764,6 +803,22 @@ function UserManager() {
       });
       ShowSaveButton();
       return false;
+    } else if (
+      (pathname.includes("usuarios") &&
+        rol == 5 &&
+        disponibilidadCatalogo === "") ||
+      (Array.isArray(disponibilidadCatalogo) &&
+        disponibilidadCatalogo.length === 0)
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Debe indicar en que catálogo se encuentra disponible",
+        text: "Clickeé en el/los botón/es de los catálogos donde se encuentre disponible",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      });
+      ShowSaveButton();
+      return false;
     } else if (activo === "") {
       Swal.fire({
         icon: "error",
@@ -848,6 +903,22 @@ function UserManager() {
       });
 
       return false;
+    } else if (
+      (pathname.includes("usuarios") &&
+        rol == 5 &&
+        disponibilidadCatalogo === "") ||
+      (Array.isArray(disponibilidadCatalogo) &&
+        disponibilidadCatalogo.length === 0)
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Debe indicar en que catálogo se encuentra disponible",
+        text: "Clickeé en el/los botón/es de los catálogos donde se encuentre disponible",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      });
+      ShowSaveButton();
+      return false;
     } else if (activo === "") {
       Swal.fire({
         icon: "error",
@@ -924,12 +995,26 @@ function UserManager() {
       return false;
     } else if (password !== "") {
       return false;
+    } else if (disponibilidadCatalogo !== "") {
+      return false;
     } else if (activo !== true) {
       return false;
     }
     return true;
   }
   //#endregion
+
+  function arraysEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+      return false;
+    }
+    for (let i = 0; i < arr1.length; i++) {
+      if (arr1[i] !== arr2[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   //#region Función para verificar si se actualizo al menos un valor de los inputs
   function IsUpdated() {
@@ -938,6 +1023,7 @@ function UserManager() {
       prevUsername.toLowerCase() !== username.toLocaleLowerCase() ||
       prevEmail.toLowerCase() !== email.toLocaleLowerCase() ||
       (pathname.includes("usuarios") && prevRol != rol) ||
+      !arraysEqual(prevDisponibilidadCatalogo, disponibilidadCatalogo) ||
       prevActivo !== activo
     ) {
       return true;
@@ -975,6 +1061,14 @@ function UserManager() {
             password: password,
             activo: activo,
             email: email,
+            disponibilidadCatalogo:
+              !disponibilidadCatalogo || disponibilidadCatalogo.length === 0
+                ? 0
+                : disponibilidadCatalogo.length === 1
+                ? disponibilidadCatalogo.includes("1")
+                  ? 1
+                  : 2
+                : 3,
           },
           headers
         );
@@ -1047,6 +1141,14 @@ function UserManager() {
             username: username,
             activo: activo,
             email: email,
+            disponibilidadCatalogo:
+              !disponibilidadCatalogo || disponibilidadCatalogo.length === 0
+                ? 0
+                : disponibilidadCatalogo.length === 1
+                ? disponibilidadCatalogo.includes("1")
+                  ? 1
+                  : 2
+                : 3,
           },
           headers
         );
@@ -1435,6 +1537,10 @@ function UserManager() {
                                     // Verifica si el valor seleccionado es 6
                                     setActivo(false); // Establece activo como false
                                   }
+
+                                  if (e.target.value !== "5") {
+                                    setDisponibilidadCatalogo(0);
+                                  }
                                 }}
                               >
                                 <option hidden key={0} value="0">
@@ -1446,6 +1552,45 @@ function UserManager() {
                                 <option value="5">Vendedor</option>
                                 <option value="6">Predeterminado</option>
                               </select>
+                            </div>
+                          </div>
+                        ) : null}
+
+                        {pathname.includes("usuarios") && rol == 5 ? (
+                          <div>
+                            <label
+                              className="label selects"
+                              htmlFor="disponibilidadCatalogo"
+                            >
+                              Disponibilidad Catálogo:
+                            </label>
+
+                            <div className="checkbox-group">
+                              <div className="checkbox-cont">
+                                <input
+                                  className="checkbox-input"
+                                  type="checkbox"
+                                  id="catalogoMinorista"
+                                  name="disponibilidadCatalogo"
+                                  value="1"
+                                  checked={disponibilidadCatalogo.includes("1")}
+                                  onChange={handleCheckboxChangeCatalogo}
+                                />
+                                <label htmlFor="catalogoMinorista">LGF</label>
+                              </div>
+
+                              <div className="checkbox-cont">
+                                <input
+                                  className="checkbox-input"
+                                  type="checkbox"
+                                  id="catalogoMayorista"
+                                  name="disponibilidadCatalogo"
+                                  value="2"
+                                  checked={disponibilidadCatalogo.includes("2")}
+                                  onChange={handleCheckboxChangeCatalogo}
+                                />
+                                <label htmlFor="catalogoMayorista">Zeide</label>
+                              </div>
                             </div>
                           </div>
                         ) : null}
@@ -1759,6 +1904,9 @@ function UserManager() {
                     Rol
                   </th>
                   <th className="table-title" scope="col">
+                    Disponibilidad Catálogo
+                  </th>
+                  <th className="table-title" scope="col">
                     Activo
                   </th>
                   <th className="table-title" scope="col">
@@ -1788,6 +1936,16 @@ function UserManager() {
                             }`}
                           >
                             {user.rol}
+                          </td>
+
+                          <td className="table-name">
+                            {user.disponibilidadCatalogo === 1
+                              ? "LGF"
+                              : user.disponibilidadCatalogo === 2
+                              ? "Zeide"
+                              : user.disponibilidadCatalogo === 3
+                              ? "LGF y Zeide"
+                              : ""}
                           </td>
 
                           {user.activo ? (

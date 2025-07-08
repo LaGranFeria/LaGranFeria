@@ -5222,15 +5222,21 @@ const CatalogueCart = () => {
                                   </option>
                                   {listaNombresVendedores &&
                                     Array.from(listaNombresVendedores).map(
-                                      (opts, i) => (
-                                        <option
-                                          className="btn-option"
-                                          key={i}
-                                          value={opts.idUsuario}
-                                        >
-                                          {opts.nombre}
-                                        </option>
-                                      )
+                                      (opts, i) => {
+                                        const shouldShowCatalogo = [
+                                          1, 3,
+                                        ].includes(opts.disponibilidadCatalogo);
+
+                                        return shouldShowCatalogo ? (
+                                          <option
+                                            className="btn-option"
+                                            key={i}
+                                            value={opts.idUsuario}
+                                          >
+                                            {opts.nombre}
+                                          </option>
+                                        ) : null;
+                                      }
                                     )}
                                   <option className="no-vendedor" value="-1">
                                     No recibí atención
