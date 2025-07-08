@@ -110,7 +110,7 @@
 }
 
 .contenedor-producto {
-  background-color: #007ab1;
+  background-color: #650707e0;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -121,7 +121,7 @@
 }
 
 .oscuro {
-  background-color: #013be4 !important;
+  background-color: #3f0404e0  !important;
 }
 
 .product {
