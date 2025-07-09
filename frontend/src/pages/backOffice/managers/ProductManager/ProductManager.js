@@ -1218,76 +1218,6 @@ function ProductManager() {
 }
   //#endregion
 
-  //#region Función para verificar si los valores ingresados a traves de los inputs son correctos (Cuando el rol es vendedor)
-  function IsValidVendedor() {
-    if (nombre === "") {
-      Swal.fire({
-        icon: "error",
-        title: "El nombre no puede estar vacío",
-        text: "Complete el campo",
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "#f27474",
-      }).then(function () {
-        setTimeout(function () {
-          $("#nombre").focus();
-        }, 500);
-      });
-      if (modalTitle === "Registrar Producto") {
-        ShowSaveButton();
-      }
-      return false;
-    }
-    // else if (descripcion === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "La descripción no puede estar vacía",
-    //     text: "Complete el campo",
-    //     confirmButtonText: "Aceptar",
-    //     confirmButtonColor: "#f27474",
-    //   }).then(function () {
-    //     setTimeout(function () {
-    //       $("#descripcion").focus();
-    //     }, 500);
-    //   });
-    //   if (modalTitle === "Registrar Producto") {
-    //     ShowSaveButton();
-    //   }
-    //   return false;
-    // }
-    else if (idCategoria === "") {
-      Swal.fire({
-        icon: "error",
-        title: "La categoría no puede estar vacía",
-        text: "Seleccione una categoría",
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "#f27474",
-      });
-      if (modalTitle === "Registrar Producto") {
-        ShowSaveButton();
-      }
-      return false;
-    }
-    // else if (urlImagen === "") {
-    //   Swal.fire({
-    //     icon: "error",
-    //     title: "La URL de la imagen no puede estar vacía",
-    //     text: "Escriba la url de la imagen",
-    //     confirmButtonText: "Aceptar",
-    //     confirmButtonColor: "#f27474",
-    //   }).then(function () {
-    //     setTimeout(function () {
-    //       $("#urlImagenInput").focus();
-    //     }, 500);
-    //   });
-    //   if (modalTitle === "Registrar Producto") {
-    //     ShowSaveButton();
-    //   }
-    //   return false;
-    // }
-    return true;
-  }
-  //#endregion
-
   //#region Función para verificar si el valor "nombre" ingresado a traves del input no esta repetido
   function IsRepeated() {
     for (let i = 0; i < products.length; i++) {
@@ -1406,7 +1336,7 @@ function ProductManager() {
     btnSave.style.opacity = "0.5";
     divBtnSave.style.cursor = "wait";
 
-    const isValid = rolUsuario === "Vendedor" ? IsValidVendedor() : IsValid();
+    const isValid = IsValid();
     const isRepeated = IsRepeated();
 
     if (isValid && !isRepeated) {
@@ -1415,54 +1345,35 @@ function ProductManager() {
           {
             nombre: `${nombre.charAt(0).toUpperCase() + nombre.slice(1)}`,
             descripcion: descripcion,
-            idDivisa: rolUsuario === "Vendedor" ? 2 : divisa,
-            precio: rolUsuario === "Vendedor" ? 0 : precio ? precio : 0,
-            porcentajeMinorista: rolUsuario === "Vendedor" ? 0 : 0,
-            porcentajeMayorista:
-              rolUsuario === "Vendedor" ? 0 : porcentajeMayorista,
-            precioMinorista: rolUsuario === "Vendedor" ? 0 : 0,
-            precioMayorista: rolUsuario === "Vendedor" ? 0 : precioMayorista,
-            stock: rolUsuario === "Vendedor" ? 0 : stock,
+            idDivisa: divisa,
+            precio: precio ? precio : 0,
+            porcentajeMinorista: 0,
+            porcentajeMayorista: porcentajeMayorista,
+            precioMinorista: 0,
+            precioMayorista: precioMayorista,
+            stock: stock,
             idCategoria: idCategoria,
             urlImagen: urlImagen,
-            ocultar: rolUsuario === "Vendedor" ? true : ocultar,
-            enPromocion: rolUsuario === "Vendedor" ? false : promocion,
-            enDestacado: rolUsuario === "Vendedor" ? false : destacado,
+            ocultar: ocultar,
+            enPromocion: promocion,
+            enDestacado: destacado,
             idSubcategoria: idSubcategoria ? idSubcategoria : "-1",
-            porcentajeMayorista2:
-              rolUsuario === "Vendedor"
-                ? 0
-                : porcentajeMayorista2
+            porcentajeMayorista2: porcentajeMayorista2
                 ? porcentajeMayorista2
                 : "-1",
-            precioMayorista2:
-              rolUsuario === "Vendedor"
-                ? 0
-                : precioMayorista2
+            precioMayorista2: precioMayorista2
                 ? precioMayorista2
                 : "-1",
-            cantidadMayorista2:
-              rolUsuario === "Vendedor"
-                ? 0
-                : cantidadMayorista2
+            cantidadMayorista2: cantidadMayorista2
                 ? cantidadMayorista2
                 : "-1",
-            porcentajeMayorista3:
-              rolUsuario === "Vendedor"
-                ? 0
-                : porcentajeMayorista3
+            porcentajeMayorista3: porcentajeMayorista3
                 ? porcentajeMayorista3
                 : "-1",
-            precioMayorista3:
-              rolUsuario === "Vendedor"
-                ? 0
-                : precioMayorista3
+            precioMayorista3: precioMayorista3
                 ? precioMayorista3
                 : "-1",
-            cantidadMayorista3:
-              rolUsuario === "Vendedor"
-                ? 0
-                : cantidadMayorista3
+            cantidadMayorista3: cantidadMayorista3
                 ? cantidadMayorista3
                 : "-1",
           },
@@ -1470,7 +1381,6 @@ function ProductManager() {
         );
 
         responseProductPromise.then((responseProduct) => {
-          if (rolUsuario !== "Vendedor") {
             SaveStockDetail(
               {
                 accion: "Agregar",
@@ -1480,7 +1390,6 @@ function ProductManager() {
               },
               headers
             );
-          }
         });
 
         Swal.fire({
@@ -1894,7 +1803,7 @@ function ProductManager() {
                       {modalTitle}
                     </h1>
 
-                    {(rolUsuario === "Supervisor" ||
+                    {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                       rolUsuario === "SuperAdmin") && (
                       <button
                         type="button"
@@ -1967,7 +1876,7 @@ function ProductManager() {
                           />
                         </div>
 
-                        {(rolUsuario === "Supervisor" ||
+                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") &&
                           (tipoPrecioMinorista !== "Manual" ||
                             tipoPrecioMayorista !== "Manual") && (
@@ -2024,7 +1933,7 @@ function ProductManager() {
                         {divisa !== "" &&
                           (tipoPrecioMinorista !== "Manual" ||
                             tipoPrecioMayorista !== "Manual") &&
-                          (rolUsuario === "Supervisor" ||
+                          (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                             rolUsuario === "SuperAdmin") && (
                             <>
                               <label className="label">Costo:</label>
@@ -2053,7 +1962,7 @@ function ProductManager() {
                             </>
                           )}
 
-                        {/* {(rolUsuario === "Supervisor" ||
+                        {/* {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <div className="minorista">
                             <>
@@ -2114,7 +2023,7 @@ function ProductManager() {
                             </>
 
                             {tipoPrecioMinorista === "Manual" &&
-                              (rolUsuario === "Supervisor" ||
+                              (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                 rolUsuario === "SuperAdmin") && (
                                 <>
                                   <label className="label">
@@ -2140,7 +2049,7 @@ function ProductManager() {
                               )}
 
                             {tipoPrecioMinorista === "Porcentual" &&
-                              (rolUsuario === "Supervisor" ||
+                              (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                 rolUsuario === "SuperAdmin") && (
                                 <>
                                   <label className="label">
@@ -2169,7 +2078,7 @@ function ProductManager() {
                           </div>
                         )} */}
 
-                        {(rolUsuario === "Supervisor" ||
+                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <div className="mayorista123">
                             <>
@@ -2254,7 +2163,7 @@ function ProductManager() {
                             )}
 
                             {tipoPrecioMayorista === "Porcentual" &&
-                              (rolUsuario === "Supervisor" ||
+                              (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                 rolUsuario === "SuperAdmin") && (
                                 <>
                                   <label className="label">
@@ -2283,7 +2192,7 @@ function ProductManager() {
                           </div>
                         )}
 
-                        {(rolUsuario === "Supervisor" ||
+                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <div
                             className={`mayorista123 ${
@@ -2382,7 +2291,7 @@ function ProductManager() {
                             )}
 
                             {tipoPrecioMayorista2 === "Porcentual" &&
-                              (rolUsuario === "Supervisor" ||
+                              (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                 rolUsuario === "SuperAdmin") && (
                                 <>
                                   <label className="label">
@@ -2411,7 +2320,7 @@ function ProductManager() {
                           </div>
                         )}
 
-                        {(rolUsuario === "Supervisor" ||
+                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <div
                             className={`mayorista123 ${
@@ -2510,7 +2419,7 @@ function ProductManager() {
                             )}
 
                             {tipoPrecioMayorista3 === "Porcentual" &&
-                              (rolUsuario === "Supervisor" ||
+                              (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                 rolUsuario === "SuperAdmin") && (
                                 <>
                                   <label className="label">
@@ -2540,7 +2449,7 @@ function ProductManager() {
                         )}
 
                         {modalTitle === "Registrar Producto" &&
-                          (rolUsuario === "Supervisor" ||
+                          (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                             rolUsuario === "SuperAdmin") && (
                             <>
                               <label className="label">Stock:</label>
@@ -2648,7 +2557,7 @@ function ProductManager() {
                         )}
                       </div>
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <>
                           <div className="form-group ocultar2">
@@ -2701,7 +2610,7 @@ function ProductManager() {
                         </>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <>
                           <div className="form-group ocultar2">
@@ -3563,13 +3472,13 @@ function ProductManager() {
                   <th className="table-title" scope="col">
                     Descripción
                   </th>
-                  {(rolUsuario === "Supervisor" ||
+                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                     rolUsuario === "SuperAdmin") && (
                     <th className="table-title" scope="col">
                       Divisa
                     </th>
                   )}
-                  {(rolUsuario === "Supervisor" ||
+                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                     rolUsuario === "SuperAdmin") && (
                     <th className="table-title" scope="col">
                       Costo
@@ -3763,7 +3672,7 @@ function ProductManager() {
                         </td>
                         {/* <td className={product.stockTransitorio === 0 ? "zero-stock" : "table-name"}>{product.divisa}</td> */}
 
-                        {(rolUsuario === "Supervisor" ||
+                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <td
                             className={
@@ -3789,7 +3698,7 @@ function ProductManager() {
                           </td>
                         )}
 
-                        {(rolUsuario === "Supervisor" ||
+                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <td
                             className={
@@ -3829,7 +3738,7 @@ function ProductManager() {
                         >
                           {product.precioMinorista > 0 ? (
                             <div>
-                              {rolUsuario === "Supervisor" ||
+                              {rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                               rolUsuario === "SuperAdmin" ? (
                                 <>
                                   <PesoInput className="input-group-svg-divisa-big2" />
@@ -3860,7 +3769,7 @@ function ProductManager() {
                             <div>
                               {product.divisa === "Peso" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" ||
+                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMinorista.toLocaleString()}
@@ -3871,7 +3780,7 @@ function ProductManager() {
 
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -3892,7 +3801,7 @@ function ProductManager() {
                                 </div>
                               ) : product.divisa == "Dólar" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" ||
+                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMinorista.toLocaleString()}
@@ -3902,7 +3811,7 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -3945,7 +3854,7 @@ function ProductManager() {
                         >
                           {product.precioMayorista > 0 ? (
                             <div>
-                              {rolUsuario === "Supervisor" ||
+                              {rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                               rolUsuario === "SuperAdmin" ? (
                                 <>
                                   <PesoInput className="input-group-svg-divisa-big2" />
@@ -3976,7 +3885,7 @@ function ProductManager() {
                             <div>
                               {product.divisa === "Peso" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" ||
+                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista.toLocaleString()}
@@ -3986,7 +3895,7 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4007,7 +3916,7 @@ function ProductManager() {
                                 </div>
                               ) : product.divisa == "Dólar" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" ||
+                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista.toLocaleString()}
@@ -4017,7 +3926,7 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4060,7 +3969,7 @@ function ProductManager() {
                         >
                           {product.precioMayorista2 > 0 ? (
                             <div>
-                              {rolUsuario === "Supervisor" ||
+                              {rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                               rolUsuario === "SuperAdmin" ? (
                                 <>
                                   <PesoInput className="input-group-svg-divisa-big2" />
@@ -4094,7 +4003,7 @@ function ProductManager() {
                             <div>
                               {product.divisa === "Peso" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" ||
+                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista2.toLocaleString()}
@@ -4104,7 +4013,7 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4125,7 +4034,7 @@ function ProductManager() {
                                 </div>
                               ) : product.divisa == "Dólar" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" ||
+                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista2.toLocaleString()}
@@ -4135,7 +4044,7 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4182,7 +4091,7 @@ function ProductManager() {
                         >
                           {product.precioMayorista3 > 0 ? (
                             <div>
-                              {rolUsuario === "Supervisor" ||
+                              {rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                               rolUsuario === "SuperAdmin" ? (
                                 <>
                                   <PesoInput className="input-group-svg-divisa-big2" />
@@ -4216,7 +4125,7 @@ function ProductManager() {
                             <div>
                               {product.divisa === "Peso" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" ||
+                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista3.toLocaleString()}
@@ -4226,7 +4135,7 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4247,7 +4156,7 @@ function ProductManager() {
                                 </div>
                               ) : product.divisa == "Dólar" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" ||
+                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista3.toLocaleString()}
@@ -4257,7 +4166,7 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4303,7 +4212,7 @@ function ProductManager() {
                           }
                         >
                           <div className="stock-btns">
-                            {(rolUsuario === "Supervisor" ||
+                            {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                               rolUsuario === "SuperAdmin") && (
                               <button
                                 type="button"
@@ -4320,7 +4229,7 @@ function ProductManager() {
                               </button>
                             )}
                             {product.stockTransitorio}
-                            {(rolUsuario === "Supervisor" ||
+                            {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                               rolUsuario === "SuperAdmin") && (
                               <button
                                 type="button"
@@ -4474,7 +4383,7 @@ function ProductManager() {
                             <Edit className="edit" />
                           </button>
 
-                          {(rolUsuario === "Supervisor" ||
+                          {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                             rolUsuario === "SuperAdmin") && (
                             <button
                               type="button"
@@ -4545,13 +4454,13 @@ function ProductManager() {
                 <th className="table-title" scope="col">
                   Descripción
                 </th>
-                {(rolUsuario === "Supervisor" ||
+                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Divisa
                   </th>
                 )}
-                {(rolUsuario === "Supervisor" ||
+                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Costo
@@ -4560,7 +4469,7 @@ function ProductManager() {
                 {/* <th className="table-title" scope="col">
                   {rolUsuario === "Vendedor" ? "$ Minorista" : "% Minorista"}
                 </th> */}
-                {/* {(rolUsuario === "Supervisor" ||
+                {/* {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Precio Minorista (Manual)
@@ -4569,7 +4478,7 @@ function ProductManager() {
                 <th className="table-title" scope="col">
                   {rolUsuario === "Vendedor" ? "$ Mayorista" : "% Mayorista"}
                 </th>
-                {(rolUsuario === "Supervisor" ||
+                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Precio Mayorista (Manual)
@@ -4580,13 +4489,13 @@ function ProductManager() {
                     ? "$ Mayorista 2"
                     : "% Mayorista 2"}
                 </th>
-                {(rolUsuario === "Supervisor" ||
+                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Precio Mayorista 2 (Manual)
                   </th>
                 )}
-                {(rolUsuario === "Supervisor" ||
+                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Cantidad Mayorista 2
@@ -4597,13 +4506,13 @@ function ProductManager() {
                     ? "$ Mayorista 3"
                     : "% Mayorista 3"}
                 </th>
-                {(rolUsuario === "Supervisor" ||
+                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Precio Mayorista 3 (Manual)
                   </th>
                 )}
-                {(rolUsuario === "Supervisor" ||
+                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Cantidad Mayorista 3
@@ -4644,12 +4553,12 @@ function ProductManager() {
 
                       <td>{product.descripcion}</td>
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.divisa}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.precio.toLocaleString()}</td>
                       )}
@@ -4703,174 +4612,27 @@ function ProductManager() {
                         </td>
                       )} */}
 
-                      {rolUsuario === "Vendedor" && (
-                        <td>
-                          {product.precioMayorista > 0 ? (
-                            <div>
-                              <>{product.precioMayorista.toLocaleString()}</>
-                            </div>
-                          ) : product.porcentajeMayorista > 0 ? (
-                            <div>
-                              {product.divisa === "Peso" ? (
-                                <div>
-                                  <p>
-                                    {(
-                                      product.precio *
-                                      (1 + product.porcentajeMayorista / 100)
-                                    )
-                                      .toLocaleString("es-ES", {
-                                        minimumFractionDigits: 0,
-                                        maximumFractionDigits: 2,
-                                      })
-                                      .replace(",", ".")
-                                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                                  </p>
-                                </div>
-                              ) : product.divisa == "Dólar" ? (
-                                <div>
-                                  <p>
-                                    {(
-                                      product.precio *
-                                      (1 + product.porcentajeMayorista / 100) *
-                                      valorDolar
-                                    )
-                                      .toLocaleString("es-ES", {
-                                        minimumFractionDigits: 0,
-                                        maximumFractionDigits: 2,
-                                      })
-                                      .replace(",", ".")
-                                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                                  </p>
-                                </div>
-                              ) : (
-                                <div>-</div>
-                              )}
-                            </div>
-                          ) : (
-                            <div>-</div>
-                          )}
-                        </td>
-                      )}
-
-                      {rolUsuario === "Vendedor" && (
-                        <td>
-                          {product.precioMayorista2 > 0 ? (
-                            <div>
-                              <>{product.precioMayorista2.toLocaleString()}</>
-                            </div>
-                          ) : product.porcentajeMayorista2 > 0 ? (
-                            <div>
-                              {product.divisa === "Peso" ? (
-                                <div>
-                                  <p>
-                                    {(
-                                      product.precio *
-                                      (1 + product.porcentajeMayorista2 / 100)
-                                    )
-                                      .toLocaleString("es-ES", {
-                                        minimumFractionDigits: 0,
-                                        maximumFractionDigits: 2,
-                                      })
-                                      .replace(",", ".")
-                                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                                  </p>
-                                </div>
-                              ) : product.divisa == "Dólar" ? (
-                                <div>
-                                  <p>
-                                    {(
-                                      product.precio *
-                                      (1 + product.porcentajeMayorista2 / 100) *
-                                      valorDolar
-                                    )
-                                      .toLocaleString("es-ES", {
-                                        minimumFractionDigits: 0,
-                                        maximumFractionDigits: 2,
-                                      })
-                                      .replace(",", ".")
-                                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                                  </p>
-                                </div>
-                              ) : (
-                                <div>-</div>
-                              )}
-                            </div>
-                          ) : (
-                            <div>-</div>
-                          )}
-                        </td>
-                      )}
-
-                      {rolUsuario === "Vendedor" && (
-                        <td>
-                          {product.precioMayorista3 > 0 ? (
-                            <div>
-                              <>{product.precioMayorista3.toLocaleString()}</>
-                            </div>
-                          ) : product.porcentajeMayorista3 > 0 ? (
-                            <div>
-                              {product.divisa === "Peso" ? (
-                                <div>
-                                  <p>
-                                    {(
-                                      product.precio *
-                                      (1 + product.porcentajeMayorista3 / 100)
-                                    )
-                                      .toLocaleString("es-ES", {
-                                        minimumFractionDigits: 0,
-                                        maximumFractionDigits: 2,
-                                      })
-                                      .replace(",", ".")
-                                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                                  </p>
-                                </div>
-                              ) : product.divisa == "Dólar" ? (
-                                <div>
-                                  <p>
-                                    {(
-                                      product.precio *
-                                      (1 + product.porcentajeMayorista3 / 100) *
-                                      valorDolar
-                                    )
-                                      .toLocaleString("es-ES", {
-                                        minimumFractionDigits: 0,
-                                        maximumFractionDigits: 2,
-                                      })
-                                      .replace(",", ".")
-                                      .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                                  </p>
-                                </div>
-                              ) : (
-                                <div>-</div>
-                              )}
-                            </div>
-                          ) : (
-                            <div>-</div>
-                          )}
-                        </td>
-                      )}
-
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.porcentajeMinorista.toLocaleString()}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.precioMinorista.toLocaleString()}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.porcentajeMayorista.toLocaleString()}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.precioMayorista.toLocaleString()}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.porcentajeMayorista2 !== null
@@ -4879,7 +4641,7 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.precioMayorista2 !== null
@@ -4888,7 +4650,7 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.cantidadMayorista2 !== null
@@ -4897,7 +4659,7 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.porcentajeMayorista3 !== null
@@ -4906,7 +4668,7 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.precioMayorista3 !== null
@@ -4915,7 +4677,7 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" ||
+                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.cantidadMayorista3 !== null
