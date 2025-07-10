@@ -1345,6 +1345,7 @@ function ProductManager() {
           {
             nombre: `${nombre.charAt(0).toUpperCase() + nombre.slice(1)}`,
             descripcion: descripcion,
+            disponibilidadCatalogo: 1,
             idDivisa: divisa,
             precio: precio ? precio : 0,
             porcentajeMinorista: 0,
@@ -1468,6 +1469,7 @@ function ProductManager() {
             idProducto: idProducto,
             nombre: `${nombre.charAt(0).toUpperCase() + nombre.slice(1)}`,
             descripcion: descripcion,
+            disponibilidadCatalogo: 1,
             idDivisa: divisa,
             precio: precio,
             porcentajeMinorista: 0,
