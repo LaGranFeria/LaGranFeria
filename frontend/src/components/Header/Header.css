@@ -31,14 +31,14 @@
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
-  width: 90px;
+  width: 100px;
   margin-top: 36px;
   /* -webkit-filter: drop-shadow(#000000ab 0 0 10px);
   filter: drop-shadow(#000000ab 0 0 10px); */
 }
 
 .header-logo-bg {
-  width: 60px;
+  width: 70px;
   margin-top: 5px;
   filter: brightness(0) invert(1);
 }
