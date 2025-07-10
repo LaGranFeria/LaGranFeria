@@ -3634,7 +3634,19 @@ function ProductManager() {
                           {product.idProducto}{" "}
                           {(product.disponibilidadCatalogo === 1 ||
                             product.disponibilidadCatalogo === 3) && (
-                            <div style={{ color: "red", fontWeight: "bold" }}>LGF</div>
+                            <div
+                              style={{
+                                color:
+                                  product.disponibilidadCatalogo === 1
+                                    ? "red"
+                                    : product.disponibilidadCatalogo === 3
+                                    ? "gold"
+                                    : "black",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              LGF
+                            </div>
                           )}
                         </td>
                         <td
@@ -4247,41 +4259,45 @@ function ProductManager() {
                           }
                         >
                           <div className="stock-btns">
-                            {((rolUsuario === "Supervisor" ||
+                            {(rolUsuario === "Supervisor" ||
                               rolUsuario === "Vendedor" ||
-                              rolUsuario === "SuperAdmin") && (product.disponibilidadCatalogo === 1 || product.disponibilidadCatalogo === 3)) && (
-                              <button
-                                type="button"
-                                className="btn btn-danger btn-delete3"
-                                aria-label="Quitar"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalQuitar"
-                                onClick={() => {
-                                  RetrieveProductInputs(product);
-                                  setOriginalStock(product.stockTransitorio);
-                                }}
-                              >
-                                <Quitar className="edit2" />
-                              </button>
-                            )}
+                              rolUsuario === "SuperAdmin") &&
+                              (product.disponibilidadCatalogo === 1 ||
+                                product.disponibilidadCatalogo === 3) && (
+                                <button
+                                  type="button"
+                                  className="btn btn-danger btn-delete3"
+                                  aria-label="Quitar"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#modalQuitar"
+                                  onClick={() => {
+                                    RetrieveProductInputs(product);
+                                    setOriginalStock(product.stockTransitorio);
+                                  }}
+                                >
+                                  <Quitar className="edit2" />
+                                </button>
+                              )}
                             {product.stockTransitorio}
-                            {((rolUsuario === "Supervisor" ||
+                            {(rolUsuario === "Supervisor" ||
                               rolUsuario === "Vendedor" ||
-                              rolUsuario === "SuperAdmin") && (product.disponibilidadCatalogo === 1 || product.disponibilidadCatalogo === 3)) && (
-                              <button
-                                type="button"
-                                className="btn btn-success btn-add2"
-                                aria-label="Agregar"
-                                data-bs-toggle="modal"
-                                data-bs-target="#modalAgregar"
-                                onClick={() => {
-                                  RetrieveProductInputs(product);
-                                  setOriginalStock(product.stockTransitorio);
-                                }}
-                              >
-                                <Agregar className="edit2" />
-                              </button>
-                            )}
+                              rolUsuario === "SuperAdmin") &&
+                              (product.disponibilidadCatalogo === 1 ||
+                                product.disponibilidadCatalogo === 3) && (
+                                <button
+                                  type="button"
+                                  className="btn btn-success btn-add2"
+                                  aria-label="Agregar"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#modalAgregar"
+                                  onClick={() => {
+                                    RetrieveProductInputs(product);
+                                    setOriginalStock(product.stockTransitorio);
+                                  }}
+                                >
+                                  <Agregar className="edit2" />
+                                </button>
+                              )}
                           </div>
                           <Link
                             to={`/detalles/${product.idProducto}`}
@@ -4395,20 +4411,19 @@ function ProductManager() {
                           />
                         </td>
 
-                        
-                          <td
-                            className={
-                              product.ocultar && product.stockTransitorio === 0
-                                ? "zero-stock-hidden table-name"
-                                : product.ocultar
-                                ? "hidden-product table-name"
-                                : product.stockTransitorio === 0
-                                ? "zero-stock table-name"
-                                : "table-name"
-                            }
-                          >
-                            {(product.disponibilidadCatalogo === 1 ||
-                          product.disponibilidadCatalogo === 3) && (
+                        <td
+                          className={
+                            product.ocultar && product.stockTransitorio === 0
+                              ? "zero-stock-hidden table-name"
+                              : product.ocultar
+                              ? "hidden-product table-name"
+                              : product.stockTransitorio === 0
+                              ? "zero-stock table-name"
+                              : "table-name"
+                          }
+                        >
+                          {(product.disponibilidadCatalogo === 1 ||
+                            product.disponibilidadCatalogo === 3) && (
                             <button
                               type="button"
                               className="btn btn-warning btn-edit"
@@ -4422,12 +4437,13 @@ function ProductManager() {
                             >
                               <Edit className="edit" />
                             </button>
-                            )}
+                          )}
 
-                            {((rolUsuario === "Supervisor" ||
-                              rolUsuario === "Vendedor" ||
-                              rolUsuario === "SuperAdmin") && (product.disponibilidadCatalogo === 1 ||
-                          product.disponibilidadCatalogo === 3)) && (
+                          {(rolUsuario === "Supervisor" ||
+                            rolUsuario === "Vendedor" ||
+                            rolUsuario === "SuperAdmin") &&
+                            (product.disponibilidadCatalogo === 1 ||
+                              product.disponibilidadCatalogo === 3) && (
                               <button
                                 type="button"
                                 className="btn btn-danger btn-delete"
@@ -4463,8 +4479,7 @@ function ProductManager() {
                                 <Delete className="delete" />
                               </button>
                             )}
-                          </td>
-                        
+                        </td>
                       </tr>
                     </tbody>
                   );
@@ -4602,7 +4617,19 @@ function ProductManager() {
                         {product.idProducto}
                         {(product.disponibilidadCatalogo === 1 ||
                           product.disponibilidadCatalogo === 3) && (
-                          <div style={{ color: "red" }}>LGF</div>
+                          <div
+                            style={{
+                              color:
+                                product.disponibilidadCatalogo === 1
+                                  ? "red"
+                                  : product.disponibilidadCatalogo === 3
+                                  ? "gold"
+                                  : "black",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            LGF
+                          </div>
                         )}
                       </td>
 
