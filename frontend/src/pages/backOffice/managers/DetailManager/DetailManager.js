@@ -878,7 +878,7 @@ function DetailManager() {
             </div>
 
             <div className="pagination-count-filter">
-              {(rolUsuario === "Supervisor" || rolUsuario === "SuperAdmin" || rolUsuario === "Vendedor") && (
+              {((rolUsuario === "Supervisor" || rolUsuario === "SuperAdmin" || rolUsuario === "Vendedor") && (product.disponibilidadCatalogo === 1 || product.disponibilidadCatalogo === 3)) && (
                 <button
                   type="button"
                   className="btn btn-danger btn-delete5"
@@ -912,7 +912,7 @@ function DetailManager() {
                   </p>
                 </div>
               </div>
-              {(rolUsuario === "Supervisor" || rolUsuario === "SuperAdmin" || rolUsuario === "Vendedor") && (
+              {((rolUsuario === "Supervisor" || rolUsuario === "SuperAdmin" || rolUsuario === "Vendedor") && (product.disponibilidadCatalogo === 1 || product.disponibilidadCatalogo === 3)) && (
                 <button
                   type="button"
                   className="btn btn-success btn-add5"

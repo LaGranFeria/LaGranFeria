@@ -948,274 +948,280 @@ function ProductManager() {
 
   //#region Función para verificar si los valores ingresados a traves de los inputs son correctos
   function IsValid() {
-  // Obtener valores actualizados directamente desde los inputs (DOM)
-  const pMayorista1 = parseFloat(document.getElementById("precioMayorista")?.value) || 0;
-  const porMayorista1 = parseFloat(document.getElementById("porcentajeMayorista")?.value) || 0;
+    // Obtener valores actualizados directamente desde los inputs (DOM)
+    const pMayorista1 =
+      parseFloat(document.getElementById("precioMayorista")?.value) || 0;
+    const porMayorista1 =
+      parseFloat(document.getElementById("porcentajeMayorista")?.value) || 0;
 
-  const pMayorista2 = parseFloat(document.getElementById("precioMayorista2")?.value) || 0;
-  const porMayorista2 = parseFloat(document.getElementById("porcentajeMayorista2")?.value) || 0;
-  const cMayorista2 = parseInt(document.getElementById("cantidadMayorista2")?.value) || 0;
+    const pMayorista2 =
+      parseFloat(document.getElementById("precioMayorista2")?.value) || 0;
+    const porMayorista2 =
+      parseFloat(document.getElementById("porcentajeMayorista2")?.value) || 0;
+    const cMayorista2 =
+      parseInt(document.getElementById("cantidadMayorista2")?.value) || 0;
 
-  const pMayorista3 = parseFloat(document.getElementById("precioMayorista3")?.value) || 0;
-  const porMayorista3 = parseFloat(document.getElementById("porcentajeMayorista3")?.value) || 0;
-  const cMayorista3 = parseInt(document.getElementById("cantidadMayorista3")?.value) || 0;
+    const pMayorista3 =
+      parseFloat(document.getElementById("precioMayorista3")?.value) || 0;
+    const porMayorista3 =
+      parseFloat(document.getElementById("porcentajeMayorista3")?.value) || 0;
+    const cMayorista3 =
+      parseInt(document.getElementById("cantidadMayorista3")?.value) || 0;
 
-  if (nombre === "") {
-    Swal.fire({
-      icon: "error",
-      title: "El nombre no puede estar vacío",
-      text: "Complete el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#nombre").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
+    if (nombre === "") {
+      Swal.fire({
+        icon: "error",
+        title: "El nombre no puede estar vacío",
+        text: "Complete el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#nombre").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (divisa === "") {
+      Swal.fire({
+        icon: "error",
+        title: "La divisa no puede estar vacía",
+        text: "Seleccione una divisa",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#divisa").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (
+      precio === "" &&
+      tipoPrecioMayorista === "Porcentual" &&
+      tipoPrecioMinorista === "Porcentual"
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "El costo del producto no puede estar vacío",
+        text: "Complete el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#precio").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (
+      precio == 0 &&
+      (tipoPrecioMayorista == "Porcentual" ||
+        tipoPrecioMinorista == "Porcentual" ||
+        tipoPrecioMayorista2 == "Porcentual" ||
+        tipoPrecioMayorista3 == "Porcentual")
+    ) {
+      Swal.fire({
+        icon: "error",
+        title:
+          "El campo de costo del producto no puede estar vacío si hay precios definidos como porcentaje.",
+        text: "Complete el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#precio").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (
+      tipoPrecioMayorista === "" &&
+      pMayorista1 === 0 &&
+      porMayorista1 === 0
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "El tipo de precio mayorista no puede estar vacío",
+        text: "Seleccione un tipo de precio mayorista",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#tipoPrecioMayorista").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (tipoPrecioMayorista === "Manual" && pMayorista1 === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "El precio mayorista manual no puede estar vacío",
+        text: "Complete el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#precioMayorista").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (tipoPrecioMayorista === "Porcentual" && porMayorista1 === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "El porcentaje de ganancia mayorista no puede estar vacío",
+        text: "Complete el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#porcentajeMayorista").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (
+      precioMinorista > 0 &&
+      pMayorista1 > 0 &&
+      precioMinorista < pMayorista1
+    ) {
+      Swal.fire({
+        icon: "error",
+        title:
+          "El precio de compra minorista no puede ser menor al precio de compra mayorista.",
+        text: "Modifique el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#precioMinorista").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (cMayorista2 === 0 && (pMayorista2 > 0 || porMayorista2 > 0)) {
+      Swal.fire({
+        icon: "error",
+        title:
+          "La cantidad mínima de compra para el precio mayorista 2 no puede estar vacía",
+        text: "Complete el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#cantidadMayorista2").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (cMayorista2 === 1 && (pMayorista2 > 0 || porMayorista2 > 0)) {
+      Swal.fire({
+        icon: "error",
+        title:
+          "La cantidad mínima de compra para el precio mayorista 2 debe ser mayor a 1",
+        text: "Complete el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#cantidadMayorista2").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (cMayorista3 === 0 && (pMayorista3 > 0 || porMayorista3 > 0)) {
+      Swal.fire({
+        icon: "error",
+        title:
+          "La cantidad mínima de compra para el precio mayorista 3 no puede estar vacía",
+        text: "Complete el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#cantidadMayorista3").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (cMayorista2 > 0 && cMayorista3 > 0 && cMayorista2 >= cMayorista3) {
+      Swal.fire({
+        icon: "error",
+        title:
+          "La cantidad mínima de compra mayorista 2 debe ser menor a la de mayorista 3",
+        text: "Modifique el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#cantidadMayorista2").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (pMayorista1 > 0 && pMayorista2 > 0 && pMayorista1 <= pMayorista2) {
+      Swal.fire({
+        icon: "error",
+        title: "El precio mayorista 1 debe ser mayor al precio mayorista 2",
+        text: "Modifique el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#precioMayorista").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (pMayorista2 > 0 && pMayorista3 > 0 && pMayorista2 <= pMayorista3) {
+      Swal.fire({
+        icon: "error",
+        title: "El precio mayorista 2 debe ser mayor al precio mayorista 3",
+        text: "Modifique el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#precioMayorista2").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (stock === "") {
+      Swal.fire({
+        icon: "error",
+        title: "El Stock no puede estar vacío. Si no hay ingrese 0",
+        text: "Complete el campo",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      }).then(() => setTimeout(() => $("#stock").focus(), 500));
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (promocion === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Debe indicar si se encuentra en promoción",
+        text: "Clickeé el botón en caso de que el mismo se encuentre en promoción",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      });
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (destacado === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Debe indicar si se encuentra destacado",
+        text: "Clickeé el botón en caso de que el mismo se encuentre destacado",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      });
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (ocultar === "") {
+      Swal.fire({
+        icon: "error",
+        title: "Debe indicar si se encuentra oculto",
+        text: "Clickeé el botón en caso de que el mismo se encuentre oculto",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      });
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    if (idCategoria === "") {
+      Swal.fire({
+        icon: "error",
+        title: "La categoría no puede estar vacía",
+        text: "Seleccione una categoría",
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: "#f27474",
+      });
+      if (modalTitle === "Registrar Producto") ShowSaveButton();
+      return false;
+    }
+
+    return true;
   }
-
-  if (divisa === "") {
-    Swal.fire({
-      icon: "error",
-      title: "La divisa no puede estar vacía",
-      text: "Seleccione una divisa",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#divisa").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (
-    precio === "" &&
-    tipoPrecioMayorista === "Porcentual" &&
-    tipoPrecioMinorista === "Porcentual"
-  ) {
-    Swal.fire({
-      icon: "error",
-      title: "El costo del producto no puede estar vacío",
-      text: "Complete el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#precio").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (
-    precio == 0 &&
-    (tipoPrecioMayorista == "Porcentual" ||
-      tipoPrecioMinorista == "Porcentual" ||
-      tipoPrecioMayorista2 == "Porcentual" ||
-      tipoPrecioMayorista3 == "Porcentual")
-  ) {
-    Swal.fire({
-      icon: "error",
-      title:
-        "El campo de costo del producto no puede estar vacío si hay precios definidos como porcentaje.",
-      text: "Complete el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#precio").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (
-    tipoPrecioMayorista === "" &&
-    pMayorista1 === 0 &&
-    porMayorista1 === 0
-  ) {
-    Swal.fire({
-      icon: "error",
-      title: "El tipo de precio mayorista no puede estar vacío",
-      text: "Seleccione un tipo de precio mayorista",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#tipoPrecioMayorista").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (tipoPrecioMayorista === "Manual" && pMayorista1 === 0) {
-    Swal.fire({
-      icon: "error",
-      title: "El precio mayorista manual no puede estar vacío",
-      text: "Complete el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#precioMayorista").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (tipoPrecioMayorista === "Porcentual" && porMayorista1 === 0) {
-    Swal.fire({
-      icon: "error",
-      title: "El porcentaje de ganancia mayorista no puede estar vacío",
-      text: "Complete el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#porcentajeMayorista").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (
-    precioMinorista > 0 &&
-    pMayorista1 > 0 &&
-    precioMinorista < pMayorista1
-  ) {
-    Swal.fire({
-      icon: "error",
-      title:
-        "El precio de compra minorista no puede ser menor al precio de compra mayorista.",
-      text: "Modifique el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#precioMinorista").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (cMayorista2 === 0 && (pMayorista2 > 0 || porMayorista2 > 0)) {
-    Swal.fire({
-      icon: "error",
-      title:
-        "La cantidad mínima de compra para el precio mayorista 2 no puede estar vacía",
-      text: "Complete el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#cantidadMayorista2").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (cMayorista2 === 1 && (pMayorista2 > 0 || porMayorista2 > 0)) {
-    Swal.fire({
-      icon: "error",
-      title:
-        "La cantidad mínima de compra para el precio mayorista 2 debe ser mayor a 1",
-      text: "Complete el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#cantidadMayorista2").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (cMayorista3 === 0 && (pMayorista3 > 0 || porMayorista3 > 0)) {
-    Swal.fire({
-      icon: "error",
-      title:
-        "La cantidad mínima de compra para el precio mayorista 3 no puede estar vacía",
-      text: "Complete el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#cantidadMayorista3").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (cMayorista2 > 0 && cMayorista3 > 0 && cMayorista2 >= cMayorista3) {
-    Swal.fire({
-      icon: "error",
-      title:
-        "La cantidad mínima de compra mayorista 2 debe ser menor a la de mayorista 3",
-      text: "Modifique el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#cantidadMayorista2").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (pMayorista1 > 0 && pMayorista2 > 0 && pMayorista1 <= pMayorista2) {
-    Swal.fire({
-      icon: "error",
-      title:
-        "El precio mayorista 1 debe ser mayor al precio mayorista 2",
-      text: "Modifique el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#precioMayorista").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (pMayorista2 > 0 && pMayorista3 > 0 && pMayorista2 <= pMayorista3) {
-    Swal.fire({
-      icon: "error",
-      title:
-        "El precio mayorista 2 debe ser mayor al precio mayorista 3",
-      text: "Modifique el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#precioMayorista2").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (stock === "") {
-    Swal.fire({
-      icon: "error",
-      title: "El Stock no puede estar vacío. Si no hay ingrese 0",
-      text: "Complete el campo",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    }).then(() => setTimeout(() => $("#stock").focus(), 500));
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (promocion === "") {
-    Swal.fire({
-      icon: "error",
-      title: "Debe indicar si se encuentra en promoción",
-      text: "Clickeé el botón en caso de que el mismo se encuentre en promoción",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    });
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (destacado === "") {
-    Swal.fire({
-      icon: "error",
-      title: "Debe indicar si se encuentra destacado",
-      text: "Clickeé el botón en caso de que el mismo se encuentre destacado",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    });
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (ocultar === "") {
-    Swal.fire({
-      icon: "error",
-      title: "Debe indicar si se encuentra oculto",
-      text: "Clickeé el botón en caso de que el mismo se encuentre oculto",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    });
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  if (idCategoria === "") {
-    Swal.fire({
-      icon: "error",
-      title: "La categoría no puede estar vacía",
-      text: "Seleccione una categoría",
-      confirmButtonText: "Aceptar",
-      confirmButtonColor: "#f27474",
-    });
-    if (modalTitle === "Registrar Producto") ShowSaveButton();
-    return false;
-  }
-
-  return true;
-}
   //#endregion
 
   //#region Función para verificar si el valor "nombre" ingresado a traves del input no esta repetido
@@ -1360,37 +1366,29 @@ function ProductManager() {
             enDestacado: destacado,
             idSubcategoria: idSubcategoria ? idSubcategoria : "-1",
             porcentajeMayorista2: porcentajeMayorista2
-                ? porcentajeMayorista2
-                : "-1",
-            precioMayorista2: precioMayorista2
-                ? precioMayorista2
-                : "-1",
-            cantidadMayorista2: cantidadMayorista2
-                ? cantidadMayorista2
-                : "-1",
+              ? porcentajeMayorista2
+              : "-1",
+            precioMayorista2: precioMayorista2 ? precioMayorista2 : "-1",
+            cantidadMayorista2: cantidadMayorista2 ? cantidadMayorista2 : "-1",
             porcentajeMayorista3: porcentajeMayorista3
-                ? porcentajeMayorista3
-                : "-1",
-            precioMayorista3: precioMayorista3
-                ? precioMayorista3
-                : "-1",
-            cantidadMayorista3: cantidadMayorista3
-                ? cantidadMayorista3
-                : "-1",
+              ? porcentajeMayorista3
+              : "-1",
+            precioMayorista3: precioMayorista3 ? precioMayorista3 : "-1",
+            cantidadMayorista3: cantidadMayorista3 ? cantidadMayorista3 : "-1",
           },
           headers
         );
 
         responseProductPromise.then((responseProduct) => {
-            SaveStockDetail(
-              {
-                accion: "Agregar",
-                cantidad: stock,
-                motivo: "Creacion de stock de producto",
-                idProducto: responseProduct.data.idProducto,
-              },
-              headers
-            );
+          SaveStockDetail(
+            {
+              accion: "Agregar",
+              cantidad: stock,
+              motivo: "Creacion de stock de producto",
+              idProducto: responseProduct.data.idProducto,
+            },
+            headers
+          );
         });
 
         Swal.fire({
@@ -1805,7 +1803,8 @@ function ProductManager() {
                       {modalTitle}
                     </h1>
 
-                    {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                    {(rolUsuario === "Supervisor" ||
+                      rolUsuario === "Vendedor" ||
                       rolUsuario === "SuperAdmin") && (
                       <button
                         type="button"
@@ -1878,7 +1877,8 @@ function ProductManager() {
                           />
                         </div>
 
-                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                        {(rolUsuario === "Supervisor" ||
+                          rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") &&
                           (tipoPrecioMinorista !== "Manual" ||
                             tipoPrecioMayorista !== "Manual") && (
@@ -1935,7 +1935,8 @@ function ProductManager() {
                         {divisa !== "" &&
                           (tipoPrecioMinorista !== "Manual" ||
                             tipoPrecioMayorista !== "Manual") &&
-                          (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                          (rolUsuario === "Supervisor" ||
+                            rolUsuario === "Vendedor" ||
                             rolUsuario === "SuperAdmin") && (
                             <>
                               <label className="label">Costo:</label>
@@ -2080,7 +2081,8 @@ function ProductManager() {
                           </div>
                         )} */}
 
-                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                        {(rolUsuario === "Supervisor" ||
+                          rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <div className="mayorista123">
                             <>
@@ -2165,7 +2167,8 @@ function ProductManager() {
                             )}
 
                             {tipoPrecioMayorista === "Porcentual" &&
-                              (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                              (rolUsuario === "Supervisor" ||
+                                rolUsuario === "Vendedor" ||
                                 rolUsuario === "SuperAdmin") && (
                                 <>
                                   <label className="label">
@@ -2194,7 +2197,8 @@ function ProductManager() {
                           </div>
                         )}
 
-                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                        {(rolUsuario === "Supervisor" ||
+                          rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <div
                             className={`mayorista123 ${
@@ -2293,7 +2297,8 @@ function ProductManager() {
                             )}
 
                             {tipoPrecioMayorista2 === "Porcentual" &&
-                              (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                              (rolUsuario === "Supervisor" ||
+                                rolUsuario === "Vendedor" ||
                                 rolUsuario === "SuperAdmin") && (
                                 <>
                                   <label className="label">
@@ -2322,7 +2327,8 @@ function ProductManager() {
                           </div>
                         )}
 
-                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                        {(rolUsuario === "Supervisor" ||
+                          rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <div
                             className={`mayorista123 ${
@@ -2421,7 +2427,8 @@ function ProductManager() {
                             )}
 
                             {tipoPrecioMayorista3 === "Porcentual" &&
-                              (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                              (rolUsuario === "Supervisor" ||
+                                rolUsuario === "Vendedor" ||
                                 rolUsuario === "SuperAdmin") && (
                                 <>
                                   <label className="label">
@@ -2451,7 +2458,8 @@ function ProductManager() {
                         )}
 
                         {modalTitle === "Registrar Producto" &&
-                          (rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                          (rolUsuario === "Supervisor" ||
+                            rolUsuario === "Vendedor" ||
                             rolUsuario === "SuperAdmin") && (
                             <>
                               <label className="label">Stock:</label>
@@ -2559,7 +2567,8 @@ function ProductManager() {
                         )}
                       </div>
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <>
                           <div className="form-group ocultar2">
@@ -2612,7 +2621,8 @@ function ProductManager() {
                         </>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <>
                           <div className="form-group ocultar2">
@@ -3474,13 +3484,15 @@ function ProductManager() {
                   <th className="table-title" scope="col">
                     Descripción
                   </th>
-                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                  {(rolUsuario === "Supervisor" ||
+                    rolUsuario === "Vendedor" ||
                     rolUsuario === "SuperAdmin") && (
                     <th className="table-title" scope="col">
                       Divisa
                     </th>
                   )}
-                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                  {(rolUsuario === "Supervisor" ||
+                    rolUsuario === "Vendedor" ||
                     rolUsuario === "SuperAdmin") && (
                     <th className="table-title" scope="col">
                       Costo
@@ -3620,6 +3632,10 @@ function ProductManager() {
                           }
                         >
                           {product.idProducto}{" "}
+                          {(product.disponibilidadCatalogo === 1 ||
+                            product.disponibilidadCatalogo === 3) && (
+                            <div style={{ color: "red" }}>LGF</div>
+                          )}
                         </td>
                         <td
                           className={
@@ -3674,7 +3690,8 @@ function ProductManager() {
                         </td>
                         {/* <td className={product.stockTransitorio === 0 ? "zero-stock" : "table-name"}>{product.divisa}</td> */}
 
-                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                        {(rolUsuario === "Supervisor" ||
+                          rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <td
                             className={
@@ -3700,7 +3717,8 @@ function ProductManager() {
                           </td>
                         )}
 
-                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                        {(rolUsuario === "Supervisor" ||
+                          rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <td
                             className={
@@ -3856,7 +3874,8 @@ function ProductManager() {
                         >
                           {product.precioMayorista > 0 ? (
                             <div>
-                              {rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                              {rolUsuario === "Supervisor" ||
+                              rolUsuario === "Vendedor" ||
                               rolUsuario === "SuperAdmin" ? (
                                 <>
                                   <PesoInput className="input-group-svg-divisa-big2" />
@@ -3887,7 +3906,8 @@ function ProductManager() {
                             <div>
                               {product.divisa === "Peso" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                  {(rolUsuario === "Supervisor" ||
+                                    rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista.toLocaleString()}
@@ -3897,7 +3917,8 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -3918,7 +3939,8 @@ function ProductManager() {
                                 </div>
                               ) : product.divisa == "Dólar" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                  {(rolUsuario === "Supervisor" ||
+                                    rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista.toLocaleString()}
@@ -3928,7 +3950,8 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -3971,7 +3994,8 @@ function ProductManager() {
                         >
                           {product.precioMayorista2 > 0 ? (
                             <div>
-                              {rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                              {rolUsuario === "Supervisor" ||
+                              rolUsuario === "Vendedor" ||
                               rolUsuario === "SuperAdmin" ? (
                                 <>
                                   <PesoInput className="input-group-svg-divisa-big2" />
@@ -4005,7 +4029,8 @@ function ProductManager() {
                             <div>
                               {product.divisa === "Peso" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                  {(rolUsuario === "Supervisor" ||
+                                    rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista2.toLocaleString()}
@@ -4015,7 +4040,8 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4036,7 +4062,8 @@ function ProductManager() {
                                 </div>
                               ) : product.divisa == "Dólar" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                  {(rolUsuario === "Supervisor" ||
+                                    rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista2.toLocaleString()}
@@ -4046,7 +4073,8 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4093,7 +4121,8 @@ function ProductManager() {
                         >
                           {product.precioMayorista3 > 0 ? (
                             <div>
-                              {rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                              {rolUsuario === "Supervisor" ||
+                              rolUsuario === "Vendedor" ||
                               rolUsuario === "SuperAdmin" ? (
                                 <>
                                   <PesoInput className="input-group-svg-divisa-big2" />
@@ -4127,7 +4156,8 @@ function ProductManager() {
                             <div>
                               {product.divisa === "Peso" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                  {(rolUsuario === "Supervisor" ||
+                                    rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista3.toLocaleString()}
@@ -4137,7 +4167,8 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4158,7 +4189,8 @@ function ProductManager() {
                                 </div>
                               ) : product.divisa == "Dólar" ? (
                                 <div>
-                                  {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                  {(rolUsuario === "Supervisor" ||
+                                    rolUsuario === "Vendedor" ||
                                     rolUsuario === "SuperAdmin") && (
                                     <>
                                       {product.porcentajeMayorista3.toLocaleString()}
@@ -4168,7 +4200,8 @@ function ProductManager() {
                                   )}
                                   <p
                                     className={
-                                      rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                                      rolUsuario === "Supervisor" ||
+                                      rolUsuario === "Vendedor" ||
                                       rolUsuario === "SuperAdmin"
                                         ? "precio-pesos"
                                         : ""
@@ -4214,8 +4247,9 @@ function ProductManager() {
                           }
                         >
                           <div className="stock-btns">
-                            {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
-                              rolUsuario === "SuperAdmin") && (
+                            {((rolUsuario === "Supervisor" ||
+                              rolUsuario === "Vendedor" ||
+                              rolUsuario === "SuperAdmin") && (product.disponibilidadCatalogo === 1 || product.disponibilidadCatalogo === 3)) && (
                               <button
                                 type="button"
                                 className="btn btn-danger btn-delete3"
@@ -4231,8 +4265,9 @@ function ProductManager() {
                               </button>
                             )}
                             {product.stockTransitorio}
-                            {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
-                              rolUsuario === "SuperAdmin") && (
+                            {((rolUsuario === "Supervisor" ||
+                              rolUsuario === "Vendedor" ||
+                              rolUsuario === "SuperAdmin") && (product.disponibilidadCatalogo === 1 || product.disponibilidadCatalogo === 3)) && (
                               <button
                                 type="button"
                                 className="btn btn-success btn-add2"
@@ -4360,69 +4395,73 @@ function ProductManager() {
                           />
                         </td>
 
-                        <td
-                          className={
-                            product.ocultar && product.stockTransitorio === 0
-                              ? "zero-stock-hidden table-name"
-                              : product.ocultar
-                              ? "hidden-product table-name"
-                              : product.stockTransitorio === 0
-                              ? "zero-stock table-name"
-                              : "table-name"
-                          }
-                        >
-                          <button
-                            type="button"
-                            className="btn btn-warning btn-edit"
-                            aria-label="Modificar"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modal"
-                            onClick={() => {
-                              RetrieveProductInputs(product);
-                              setModalTitle("Actualizar Producto");
-                            }}
+                        {(product.disponibilidadCatalogo === 1 ||
+                          product.disponibilidadCatalogo === 3) && (
+                          <td
+                            className={
+                              product.ocultar && product.stockTransitorio === 0
+                                ? "zero-stock-hidden table-name"
+                                : product.ocultar
+                                ? "hidden-product table-name"
+                                : product.stockTransitorio === 0
+                                ? "zero-stock table-name"
+                                : "table-name"
+                            }
                           >
-                            <Edit className="edit" />
-                          </button>
-
-                          {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
-                            rolUsuario === "SuperAdmin") && (
                             <button
                               type="button"
-                              className="btn btn-danger btn-delete"
-                              aria-label="Eliminar"
-                              onClick={() =>
-                                Swal.fire({
-                                  title:
-                                    "Esta seguro de que desea eliminar el siguiente producto: " +
-                                    product.nombre +
-                                    "?",
-                                  imageUrl: `${
-                                    product.urlImagen ||
-                                    "https://yourfiles.cloud/uploads/98310f0d0f14ff456c3886d644d438b6/vacio.jpg"
-                                  }`,
-                                  imageWidth: 200,
-                                  imageHeight: 200,
-                                  imageAlt: "Producto a eliminar",
-                                  text: "Una vez eliminado, no se podra recuperar",
-                                  icon: "warning",
-                                  showCancelButton: true,
-                                  confirmButtonColor: "#F8BB86",
-                                  cancelButtonColor: "#6c757d",
-                                  confirmButtonText: "Aceptar",
-                                  cancelButtonText: "Cancelar",
-                                  focusCancel: true,
-                                }).then((result) => {
-                                  if (result.isConfirmed) {
-                                    DeleteProduct(product.idProducto);
-                                  }
-                                })
-                              }
+                              className="btn btn-warning btn-edit"
+                              aria-label="Modificar"
+                              data-bs-toggle="modal"
+                              data-bs-target="#modal"
+                              onClick={() => {
+                                RetrieveProductInputs(product);
+                                setModalTitle("Actualizar Producto");
+                              }}
                             >
-                              <Delete className="delete" />
+                              <Edit className="edit" />
                             </button>
-                          )}
-                        </td>
+
+                            {(rolUsuario === "Supervisor" ||
+                              rolUsuario === "Vendedor" ||
+                              rolUsuario === "SuperAdmin") && (
+                              <button
+                                type="button"
+                                className="btn btn-danger btn-delete"
+                                aria-label="Eliminar"
+                                onClick={() =>
+                                  Swal.fire({
+                                    title:
+                                      "Esta seguro de que desea eliminar el siguiente producto: " +
+                                      product.nombre +
+                                      "?",
+                                    imageUrl: `${
+                                      product.urlImagen ||
+                                      "https://yourfiles.cloud/uploads/98310f0d0f14ff456c3886d644d438b6/vacio.jpg"
+                                    }`,
+                                    imageWidth: 200,
+                                    imageHeight: 200,
+                                    imageAlt: "Producto a eliminar",
+                                    text: "Una vez eliminado, no se podra recuperar",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#F8BB86",
+                                    cancelButtonColor: "#6c757d",
+                                    confirmButtonText: "Aceptar",
+                                    cancelButtonText: "Cancelar",
+                                    focusCancel: true,
+                                  }).then((result) => {
+                                    if (result.isConfirmed) {
+                                      DeleteProduct(product.idProducto);
+                                    }
+                                  })
+                                }
+                              >
+                                <Delete className="delete" />
+                              </button>
+                            )}
+                          </td>
+                        )}
                       </tr>
                     </tbody>
                   );
@@ -4456,13 +4495,15 @@ function ProductManager() {
                 <th className="table-title" scope="col">
                   Descripción
                 </th>
-                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                {(rolUsuario === "Supervisor" ||
+                  rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Divisa
                   </th>
                 )}
-                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                {(rolUsuario === "Supervisor" ||
+                  rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Costo
@@ -4480,7 +4521,8 @@ function ProductManager() {
                 <th className="table-title" scope="col">
                   {rolUsuario === "Vendedor" ? "$ Mayorista" : "% Mayorista"}
                 </th>
-                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                {(rolUsuario === "Supervisor" ||
+                  rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Precio Mayorista (Manual)
@@ -4491,13 +4533,15 @@ function ProductManager() {
                     ? "$ Mayorista 2"
                     : "% Mayorista 2"}
                 </th>
-                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                {(rolUsuario === "Supervisor" ||
+                  rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Precio Mayorista 2 (Manual)
                   </th>
                 )}
-                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                {(rolUsuario === "Supervisor" ||
+                  rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Cantidad Mayorista 2
@@ -4508,13 +4552,15 @@ function ProductManager() {
                     ? "$ Mayorista 3"
                     : "% Mayorista 3"}
                 </th>
-                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                {(rolUsuario === "Supervisor" ||
+                  rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Precio Mayorista 3 (Manual)
                   </th>
                 )}
-                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                {(rolUsuario === "Supervisor" ||
+                  rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Cantidad Mayorista 3
@@ -4549,18 +4595,26 @@ function ProductManager() {
                 return (
                   <tbody key={1 + product.idProducto}>
                     <tr>
-                      <td>{product.idProducto}</td>
+                      <td>
+                        {product.idProducto}
+                        {(product.disponibilidadCatalogo === 1 ||
+                          product.disponibilidadCatalogo === 3) && (
+                          <div style={{ color: "red" }}>LGF</div>
+                        )}
+                      </td>
 
                       <td>{product.nombre}</td>
 
                       <td>{product.descripcion}</td>
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.divisa}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.precio.toLocaleString()}</td>
                       )}
@@ -4614,27 +4668,32 @@ function ProductManager() {
                         </td>
                       )} */}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.porcentajeMinorista.toLocaleString()}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.precioMinorista.toLocaleString()}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.porcentajeMayorista.toLocaleString()}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>{product.precioMayorista.toLocaleString()}</td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.porcentajeMayorista2 !== null
@@ -4643,7 +4702,8 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.precioMayorista2 !== null
@@ -4652,7 +4712,8 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.cantidadMayorista2 !== null
@@ -4661,7 +4722,8 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.porcentajeMayorista3 !== null
@@ -4670,7 +4732,8 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.precioMayorista3 !== null
@@ -4679,7 +4742,8 @@ function ProductManager() {
                         </td>
                       )}
 
-                      {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                      {(rolUsuario === "Supervisor" ||
+                        rolUsuario === "Vendedor" ||
                         rolUsuario === "SuperAdmin") && (
                         <td>
                           {product.cantidadMayorista3 !== null
