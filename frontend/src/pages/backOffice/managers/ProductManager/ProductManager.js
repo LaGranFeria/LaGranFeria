@@ -3634,7 +3634,7 @@ function ProductManager() {
                           {product.idProducto}{" "}
                           {(product.disponibilidadCatalogo === 1 ||
                             product.disponibilidadCatalogo === 3) && (
-                            <div style={{ color: "red" }}>LGF</div>
+                            <div style={{ color: "red", fontWeight: "bold" }}>LGF</div>
                           )}
                         </td>
                         <td
@@ -4395,8 +4395,7 @@ function ProductManager() {
                           />
                         </td>
 
-                        {(product.disponibilidadCatalogo === 1 ||
-                          product.disponibilidadCatalogo === 3) && (
+                        
                           <td
                             className={
                               product.ocultar && product.stockTransitorio === 0
@@ -4408,6 +4407,8 @@ function ProductManager() {
                                 : "table-name"
                             }
                           >
+                            {(product.disponibilidadCatalogo === 1 ||
+                          product.disponibilidadCatalogo === 3) && (
                             <button
                               type="button"
                               className="btn btn-warning btn-edit"
@@ -4421,10 +4422,12 @@ function ProductManager() {
                             >
                               <Edit className="edit" />
                             </button>
+                            )}
 
-                            {(rolUsuario === "Supervisor" ||
+                            {((rolUsuario === "Supervisor" ||
                               rolUsuario === "Vendedor" ||
-                              rolUsuario === "SuperAdmin") && (
+                              rolUsuario === "SuperAdmin") && (product.disponibilidadCatalogo === 1 ||
+                          product.disponibilidadCatalogo === 3)) && (
                               <button
                                 type="button"
                                 className="btn btn-danger btn-delete"
@@ -4461,7 +4464,7 @@ function ProductManager() {
                               </button>
                             )}
                           </td>
-                        )}
+                        
                       </tr>
                     </tbody>
                   );
