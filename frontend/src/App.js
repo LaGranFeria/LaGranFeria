@@ -1,7 +1,7 @@
 import "./styles/global.css";
 import "./styles/global2.css";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import Header from "./components/Header/Header";
@@ -54,7 +54,7 @@ function App() {
         window.location.pathname === "/catalogo-mayorista" ||
         window.location.pathname === "/catalogo-mayorista-redes") && <Header />}
       <Routes>
-        <Route index element={<CatalogueCart />} />
+        <Route index element={<Navigate to="/catalogo-mayorista" replace />} />
         {/* <Route path="/" element={<Catalogue />} />
         <Route path="catalogo" element={<Catalogue />} /> */}
         {/* <Route path="catalogo-minorista" element={<CatalogueCart />} />
