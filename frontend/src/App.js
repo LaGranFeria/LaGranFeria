@@ -44,7 +44,8 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      {(window.location.pathname === "/" ||
+      {(
+        // window.location.pathname === "/" ||
         // window.location.pathname === "/catalogo" ||
         // window.location.pathname === "/catalogo-minorista" ||
         // window.location.pathname === "/catalogo-minorista-redes" ||
@@ -53,9 +54,9 @@ function App() {
         window.location.pathname === "/catalogo-mayorista" ||
         window.location.pathname === "/catalogo-mayorista-redes") && <Header />}
       <Routes>
-        <Route index element={<Catalogue />} />
-        <Route path="/" element={<Catalogue />} />
-        <Route path="catalogo" element={<Catalogue />} />
+        <Route index element={<CatalogueCart />} />
+        {/* <Route path="/" element={<Catalogue />} />
+        <Route path="catalogo" element={<Catalogue />} /> */}
         {/* <Route path="catalogo-minorista" element={<CatalogueCart />} />
         <Route path="catalogo-minorista-redes" element={<CatalogueCart />} /> */}
         <Route path="ecommerce" element={<Ecommerce />} />
@@ -213,7 +214,8 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {(window.location.pathname === "/" ||
+      {(
+        // window.location.pathname === "/" ||
         // window.location.pathname === "/catalogo" ||
         // window.location.pathname === "/catalogo-minorista" ||
         // window.location.pathname === "/catalogo-minorista-redes" ||
@@ -221,7 +223,8 @@ function App() {
         window.location.pathname.includes("/producto") ||
         window.location.pathname === "/catalogo-mayorista" ||
         window.location.pathname === "/catalogo-mayorista-redes") && <Footer />}
-      {(window.location.pathname === "/" ||
+      {(
+        // window.location.pathname === "/" ||
         // window.location.pathname === "/catalogo" ||
         // window.location.pathname === "/catalogo-minorista" ||
         // window.location.pathname === "/catalogo-minorista-redes" ||
