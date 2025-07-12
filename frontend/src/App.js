@@ -45,7 +45,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       {(window.location.pathname === "/" ||
-        window.location.pathname === "/catalogo" ||
+        // window.location.pathname === "/catalogo" ||
         // window.location.pathname === "/catalogo-minorista" ||
         // window.location.pathname === "/catalogo-minorista-redes" ||
         window.location.pathname === "/ecommerce" ||
@@ -214,7 +214,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
       {(window.location.pathname === "/" ||
-        window.location.pathname === "/catalogo" ||
+        // window.location.pathname === "/catalogo" ||
         // window.location.pathname === "/catalogo-minorista" ||
         // window.location.pathname === "/catalogo-minorista-redes" ||
         window.location.pathname === "/ecommerce" ||
@@ -222,7 +222,7 @@ function App() {
         window.location.pathname === "/catalogo-mayorista" ||
         window.location.pathname === "/catalogo-mayorista-redes") && <Footer />}
       {(window.location.pathname === "/" ||
-        window.location.pathname === "/catalogo" ||
+        // window.location.pathname === "/catalogo" ||
         // window.location.pathname === "/catalogo-minorista" ||
         // window.location.pathname === "/catalogo-minorista-redes" ||
         window.location.pathname === "/ecommerce" ||
