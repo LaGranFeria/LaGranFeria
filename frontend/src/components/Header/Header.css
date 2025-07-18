@@ -366,6 +366,12 @@
   color: #000000;
 }
 
+.cart-item-count-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 .cart-item-count-bg {
   color: #ffffff;
 }
