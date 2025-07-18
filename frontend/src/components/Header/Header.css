@@ -416,9 +416,13 @@
     font-size: 10px;
   }
 
+  .header-burger-menu-container{
+    transform: translateX(-10px);
+  }
+
   .cart-item-count-container {
     transform: translateY(-5px);
-}
+  }
 
   .cart-item-total {
       transform: translate(20px, -10px);
