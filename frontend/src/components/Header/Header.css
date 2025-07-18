@@ -411,6 +411,20 @@
   }
 }
 
+@media (max-width: 700px) {
+  .cart-item-count {
+    font-size: 10px;
+  }
+
+  .cart-item-count-container {
+    transform: translateY(-5px);
+}
+
+  .cart-item-total {
+      transform: translate(20px, -10px);
+  }
+}
+
 @media (max-width: 650px) {
   .dropdown-menu {
     margin-top: 6px;
