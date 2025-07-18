@@ -49,8 +49,7 @@ import "../CatalogueCart/CatalogueCart.css";
 
 const CatalogueCart = () => {
   //#region Constantes
-  const { aviso, modalCerrado, mantenimiento, mantenimientoZeide } =
-    useContext(Context);
+  const { aviso, modalCerrado, mantenimiento, mantenimientoZeide} = useContext(Context);
 
   const [codigoExcento, setCodigoExcento] = useState(false);
 
@@ -3054,11 +3053,11 @@ const CatalogueCart = () => {
                           {totalQuantity}
                         </span>
                         <span
-                          className={
+                        className={`cart-item-total ${
                             color
-                              ? "cart-item-count cart-item-count-bg"
-                              : "cart-item-count"
-                          }
+                            ? "cart-item-count cart-item-count-bg"
+                            : "cart-item-count"
+                          }`}
                         >
                           $
                           {calculateTotal()
@@ -5008,9 +5007,7 @@ const CatalogueCart = () => {
                               {listaFormasEntrega &&
                                 Array.from(listaFormasEntrega).map(
                                   (opts, i) => {
-                                    const shouldShowCatalogo = [1, 3].includes(
-                                      opts.disponibilidadCatalogo
-                                    );
+                                    const shouldShowCatalogo = [1, 3].includes(opts.disponibilidadCatalogo);
 
                                     return shouldShowCatalogo ? (
                                       <option
@@ -5159,9 +5156,7 @@ const CatalogueCart = () => {
                                         opts.disponibilidad !== 1) ||
                                       opts.disponibilidad === 3;
 
-                                    const shouldShowCatalogo = [1, 3].includes(
-                                      opts.disponibilidadCatalogo
-                                    );
+                                    const shouldShowCatalogo = [1, 3].includes(opts.disponibilidadCatalogo);
 
                                     const shouldShow =
                                       shouldShowEnvio && shouldShowCatalogo;
@@ -5330,14 +5325,15 @@ const CatalogueCart = () => {
 
                           {calculateTotalAhorro() > 0 && (
                             <b className="ahorro2">
-                              Ahorraste $
-                              {Math.ceil(calculateTotalAhorro())
-                                .toLocaleString("es-ES", {
-                                  minimumFractionDigits: 0,
-                                  maximumFractionDigits: 2,
-                                })
-                                .replace(",", ".")
-                                .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                              Ahorraste{" "}
+                                $
+                                {Math.ceil(calculateTotalAhorro())
+                                  .toLocaleString("es-ES", {
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 2,
+                                  })
+                                  .replace(",", ".")
+                                  .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                             </b>
                           )}
                         </div>

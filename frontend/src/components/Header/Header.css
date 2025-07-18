@@ -366,10 +366,12 @@
   color: #000000;
 }
 
+.cart-item-total {
+  transform: translate(20px, 0px);
+}
+
 .cart-item-count-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  transform: translateY(-15px);
 }
 
 .cart-item-count-bg {
