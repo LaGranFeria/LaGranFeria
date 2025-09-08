@@ -2016,7 +2016,7 @@ const CatalogueCart = () => {
           }`,
           entreCalles: `${calles.charAt(0).toUpperCase() + calles.slice(1)}`,
           costoEnvio: costoEnvioDomicilio > 0 ? costoEnvioDomicilio : 0,
-          idTipoPedido: 1, // (Tipo 1 es para LGF)
+          idTipoPedido: pathname.includes("minorista") ? 3 : 1, // (1 = LGF Mayorista, 3 = LGF Minorista)
           idVendedor: pathname.includes("redes") ? "-1" : vendedor,
           idMetodoPago: abono,
           idMetodoEntrega: envio,

@@ -2011,7 +2011,9 @@ function OrderManager() {
                           {order.idPedido}
                         </td>
                         <td className="table-name table-name-orders">
-                          {order.tipo === "Mayorista" ? "Zeide" : "LGF"}
+                          {order.tipo.includes("Zeide") ? "Zeide" : "LGF"}
+                          <br />
+                          ({order.tipo.includes("Mayorista") ? "(Mayorista)" : "(Minorista)"})
                         </td>
                         <td className="table-name table-name-orders">
                           {order.cliente}
@@ -2206,7 +2208,7 @@ function OrderManager() {
                   <tbody key={1 + order.idPedido}>
                     <tr>
                       <td>{order.idPedido}</td>
-                      <td>{order.tipo === "Mayorista" ? "Zeide" : "LGF"}</td>
+                      <td>{order.tipo.includes("Zeide") ? "Zeide" : "LGF"} {order.tipo.includes("Mayorista") ? "(Mayorista)" : "(Minorista)"}</td>
                       <td>{order.cliente}</td>
                       <td>
                         {order.entrega}

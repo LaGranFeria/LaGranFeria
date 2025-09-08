@@ -1041,11 +1041,15 @@ function OrderReports() {
                     onChange={(e) => {
                       setSelectedTipo(e.target.value); // Asignar el tipo seleccionado a selectedTipo
                       const tipoNombre =
-                        e.target.value === "1"
-                          ? "LGF"
-                          : e.target.value === "2"
-                          ? "Zeide"
-                          : ""; // Asignar el nombre del tipo seleccionado
+                      e.target.value === "1"
+                        ? "LGF (Mayorista)"
+                        : e.target.value === "2"
+                        ? "Zeide (Mayorista)"
+                        : e.target.value === "3"
+                        ? "LGF (Minorista)"
+                        : e.target.value === "4"
+                        ? "Zeide (Minorista)"
+                        : "";
                       setNombreSelectedTipo(tipoNombre); // Asignar el nombre del tipo seleccionado a nombreSelectedTipo
                     }}
                   >
@@ -1781,7 +1785,9 @@ function OrderReports() {
                           {order.idPedido}{" "}
                         </td>
                         <td className="table-name table-name-orders">
-                          {order.tipo === "Mayorista" ? "Zeide" : "LGF"}
+                          {order.tipo.includes("Zeide") ? "Zeide" : "LGF"}
+                          <br />
+                          ({order.tipo.includes("Mayorista") ? "(Mayorista)" : "(Minorista)"})
                         </td>
                         <td className="table-name table-name-orders">
                           {order.cliente}
@@ -1902,7 +1908,7 @@ function OrderReports() {
                     <tr>
                       <th scope="row">{index + 1}</th>
                       <td>{order.idPedido} </td>
-                      <td>{order.tipo === "Mayorista" ? "Zeide" : "LGF"}</td>
+                      <td>{order.tipo.includes("Zeide") ? "Zeide" : "LGF"} {order.tipo.includes("Mayorista") ? "(Mayorista)" : "(Minorista)"}</td>
                       <td>{order.cliente}</td>
                       <td
                         className={`table-name table-name-orders ${
