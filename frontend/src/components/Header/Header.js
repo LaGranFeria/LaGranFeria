@@ -37,7 +37,12 @@ function Header() {
           }
         >
           <img
-            className={color ? "header-logo  header-logo-bg " : "header-logo"}
+            className={`
+              header-logo 
+              ${color ? "header-logo-bg" : ""} 
+              ${isMinorista ? "header-logo-minorista" : ""} 
+              ${isMinorista && color ? "header-logo-bg-minorista" : ""}
+            `}
             width={140}
             src={isMinorista ? urlLogoMinorista : urlLogo}
             alt="logo"

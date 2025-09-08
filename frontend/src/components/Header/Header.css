@@ -37,10 +37,20 @@
   filter: drop-shadow(#000000ab 0 0 10px); */
 }
 
+.header-logo-minorista {
+  width: 75px;
+  transform: translate(12px, 14px);
+}
+
 .header-logo-bg {
   width: 70px;
   margin-top: 5px;
   filter: brightness(0) invert(1);
+}
+
+.header-logo-bg-minorista {
+  width: 52px;
+  transform: translate(8px, 0px);
 }
 
 .header-menu {
