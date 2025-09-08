@@ -1354,7 +1354,7 @@ function ProductManager() {
             disponibilidadCatalogo: 1,
             idDivisa: divisa,
             precio: precio ? precio : 0,
-            porcentajeMinorista: 0,
+            porcentajeMinorista: porcentajeMinorista,
             porcentajeMayorista: porcentajeMayorista,
             precioMinorista: 0,
             precioMayorista: precioMayorista,
@@ -1470,7 +1470,7 @@ function ProductManager() {
             disponibilidadCatalogo: 1,
             idDivisa: divisa,
             precio: precio,
-            porcentajeMinorista: 0,
+            porcentajeMinorista: porcentajeMinorista,
             porcentajeMayorista: porcentajeMayorista,
             precioMinorista: 0,
             precioMayorista: precioMayorista,
@@ -1965,7 +1965,7 @@ function ProductManager() {
                             </>
                           )}
 
-                        {/* {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                        {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                           rolUsuario === "SuperAdmin") && (
                           <div className="minorista">
                             <>
@@ -2079,7 +2079,7 @@ function ProductManager() {
                                 </>
                               )}
                           </div>
-                        )} */}
+                        )}
 
                         {(rolUsuario === "Supervisor" ||
                           rolUsuario === "Vendedor" ||
@@ -3499,7 +3499,7 @@ function ProductManager() {
                     </th>
                   )}
 
-                  {/* <th className="table-title porc-text" scope="col">
+                  <th className="table-title porc-text" scope="col">
                     <div className="porc-btn-container">
                       <Link
                         to="/catalogo-minorista"
@@ -3514,7 +3514,7 @@ function ProductManager() {
                         ? "$ Minorista"
                         : "% Minorista"}
                     </div>
-                  </th> */}
+                  </th>
 
                   <th className="table-title porc-text" scope="col">
                     <div className="porc-btn-container">
@@ -3757,7 +3757,7 @@ function ProductManager() {
                           </td>
                         )}
 
-                        {/* <td
+                        <td
                           className={
                             product.ocultar && product.stockTransitorio === 0
                               ? "zero-stock-hidden table-name"
@@ -3871,7 +3871,7 @@ function ProductManager() {
                           ) : (
                             <div>-</div>
                           )}
-                        </td> */}
+                        </td>
 
                         <td
                           className={
@@ -4527,15 +4527,15 @@ function ProductManager() {
                     Costo
                   </th>
                 )}
-                {/* <th className="table-title" scope="col">
+                <th className="table-title" scope="col">
                   {rolUsuario === "Vendedor" ? "$ Minorista" : "% Minorista"}
-                </th> */}
-                {/* {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
+                </th>
+                {(rolUsuario === "Supervisor" || rolUsuario === "Vendedor" ||
                   rolUsuario === "SuperAdmin") && (
                   <th className="table-title" scope="col">
                     Precio Minorista (Manual)
                   </th>
-                )} */}
+                )}
                 <th className="table-title" scope="col">
                   {rolUsuario === "Vendedor" ? "$ Mayorista" : "% Mayorista"}
                 </th>
@@ -4649,7 +4649,7 @@ function ProductManager() {
                         <td>{product.precio.toLocaleString()}</td>
                       )}
 
-                      {/* {rolUsuario === "Vendedor" && (
+                      {rolUsuario === "Vendedor" && (
                         <td>
                           {product.precioMinorista > 0 ? (
                             <div>
@@ -4696,7 +4696,7 @@ function ProductManager() {
                             <div>-</div>
                           )}
                         </td>
-                      )} */}
+                      )}
 
                       {(rolUsuario === "Supervisor" ||
                         rolUsuario === "Vendedor" ||

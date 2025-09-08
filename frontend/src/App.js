@@ -47,8 +47,8 @@ function App() {
       {(
         window.location.pathname === "/" ||
         // window.location.pathname === "/catalogo" ||
-        // window.location.pathname === "/catalogo-minorista" ||
-        // window.location.pathname === "/catalogo-minorista-redes" ||
+        window.location.pathname === "/catalogo-minorista" ||
+        window.location.pathname === "/catalogo-minorista-redes" ||
         window.location.pathname === "/ecommerce" ||
         window.location.pathname.includes("/producto") ||
         window.location.pathname === "/catalogo-mayorista" ||
@@ -57,8 +57,8 @@ function App() {
         <Route index element={<Navigate to="/catalogo-mayorista" replace />} />
         {/* <Route path="/" element={<Catalogue />} />
         <Route path="catalogo" element={<Catalogue />} /> */}
-        {/* <Route path="catalogo-minorista" element={<CatalogueCart />} />
-        <Route path="catalogo-minorista-redes" element={<CatalogueCart />} /> */}
+        <Route path="catalogo-minorista" element={<CatalogueCart />} />
+        <Route path="catalogo-minorista-redes" element={<CatalogueCart />} />
         <Route path="ecommerce" element={<Ecommerce />} />
         <Route path="producto/:id" element={<Product />} />
         <Route path="catalogo-mayorista" element={<CatalogueCart />} />
@@ -217,8 +217,8 @@ function App() {
       {(
         window.location.pathname === "/" ||
         // window.location.pathname === "/catalogo" ||
-        // window.location.pathname === "/catalogo-minorista" ||
-        // window.location.pathname === "/catalogo-minorista-redes" ||
+        window.location.pathname === "/catalogo-minorista" ||
+        window.location.pathname === "/catalogo-minorista-redes" ||
         window.location.pathname === "/ecommerce" ||
         window.location.pathname.includes("/producto") ||
         window.location.pathname === "/catalogo-mayorista" ||
@@ -226,8 +226,8 @@ function App() {
       {(
         window.location.pathname === "/" ||
         // window.location.pathname === "/catalogo" ||
-        // window.location.pathname === "/catalogo-minorista" ||
-        // window.location.pathname === "/catalogo-minorista-redes" ||
+        window.location.pathname === "/catalogo-minorista" ||
+        window.location.pathname === "/catalogo-minorista-redes" ||
         window.location.pathname === "/ecommerce" ||
         window.location.pathname.includes("/producto") ||
         window.location.pathname === "/catalogo-mayorista" ||
