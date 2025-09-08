@@ -1356,7 +1356,7 @@ function ProductManager() {
             precio: precio ? precio : 0,
             porcentajeMinorista: porcentajeMinorista,
             porcentajeMayorista: porcentajeMayorista,
-            precioMinorista: precioMinorista,
+            precioMinorista: precioMinorista ? precioMinorista : 0,
             precioMayorista: precioMayorista,
             stock: stock,
             idCategoria: idCategoria,
