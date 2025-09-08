@@ -1472,7 +1472,7 @@ function ProductManager() {
             precio: precio,
             porcentajeMinorista: porcentajeMinorista,
             porcentajeMayorista: porcentajeMayorista,
-            precioMinorista: precioMinorista,
+            precioMinorista: precioMinorista ? precioMinorista : 0,
             precioMayorista: precioMayorista,
             idCategoria: idCategoria,
             urlImagen: urlImagen,
