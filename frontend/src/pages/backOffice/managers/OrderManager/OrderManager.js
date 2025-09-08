@@ -2013,7 +2013,7 @@ function OrderManager() {
                         <td className="table-name table-name-orders">
                           {order.tipo.includes("Zeide") ? "Zeide" : "LGF"}
                           <br />
-                          ({order.tipo.includes("Mayorista") ? "(Mayorista)" : "(Minorista)"})
+                          ({order.tipo.includes("Mayorista") ? "Mayorista" : "Minorista"})
                         </td>
                         <td className="table-name table-name-orders">
                           {order.cliente}
