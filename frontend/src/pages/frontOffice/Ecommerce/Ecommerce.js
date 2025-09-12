@@ -301,7 +301,7 @@ function Ecommerce() {
 
   //#region Función para obtener las subcategorías de una categoría
   const RetrieveCategorySubcategories = async (idCategoria) => {
-    const result = await GetSubcategoriesByCategory(idCategoria);
+    const result = await GetSubcategoriesByCategory(idCategoria, 3);
     setSubcategories(result);
   };
   //#endregion

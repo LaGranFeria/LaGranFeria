@@ -18,13 +18,17 @@ async function GetSubcategoriesByCategoryManage(idCategory) {
 }
 //#endregion
 
-//#region Función para obtener todas los subcategorías para el catalogo
-async function GetSubcategoriesByCategory(idCategory) {
-  const result = await axios.get(
-    "https://elzeide.somee.com/subcategoria/categoria/" + idCategory
-  );
-  const subcategorias = result.data.subcategorias || [];
-  return subcategorias;
+//#region Función para obtener subcategorías por categoría y tipo de cliente
+async function GetSubcategoriesByCategory(idCategory, clientType) {
+  try {
+    const { data } = await axios.get(
+      `https://elzeide.somee.com/subcategoria/categoria/${idCategory}/${clientType}`
+    );
+    return data?.subcategorias ?? [];
+  } catch (e) {
+    console.error("GetSubcategoriesByCategory error:", e);
+    return [];
+  }
 }
 //#endregion
 

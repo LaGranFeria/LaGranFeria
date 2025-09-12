@@ -187,7 +187,7 @@ const Catalogue = () => {
         for (const category of openedCategoriesWithIds) {
           // Obtener las subcategorías actualizadas para cada categoría abierta
           const updatedSubcategories = await GetSubcategoriesByCategory(
-            category.idCategoria
+            category.idCategoria, 3
           );
 
           // Actualizar el estado de las subcategorías para esa categoría
@@ -324,7 +324,7 @@ const Catalogue = () => {
           ...prevLoadingState,
           [category]: true,
         }));
-        const subcategories = await GetSubcategoriesByCategory(idCategory);
+        const subcategories = await GetSubcategoriesByCategory(idCategory, 3);
         setCategorySubcategories((prevSubcategories) => ({
           ...prevSubcategories,
           [category]: subcategories,

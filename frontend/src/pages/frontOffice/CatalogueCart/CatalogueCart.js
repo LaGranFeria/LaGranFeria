@@ -723,7 +723,8 @@ const CatalogueCart = () => {
         for (const category of openedCategoriesWithIds) {
           // Obtener las subcategorías actualizadas para cada categoría abierta
           const updatedSubcategories = await GetSubcategoriesByCategory(
-            category.idCategoria
+            category.idCategoria,
+            isMayorista ? 1 : 2
           );
 
           // Actualizar el estado de las subcategorías para esa categoría
@@ -1363,13 +1364,15 @@ const CatalogueCart = () => {
 
     let products;
 
+    const isMayorista = pathname.includes("mayorista");
+
     if (hasSubcategories) {
       try {
         setIsLoadingSubcategories((prevLoadingState) => ({
           ...prevLoadingState,
           [category]: true,
         }));
-        const subcategories = await GetSubcategoriesByCategory(idCategory);
+        const subcategories = await GetSubcategoriesByCategory(idCategory, isMayorista ? 1 : 2);
         setCategorySubcategories((prevSubcategories) => ({
           ...prevSubcategories,
           [category]: subcategories,
