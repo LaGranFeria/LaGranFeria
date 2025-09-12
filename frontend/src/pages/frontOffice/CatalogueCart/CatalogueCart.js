@@ -719,6 +719,8 @@ const CatalogueCart = () => {
           return { idCategoria: category.idCategoria, nombre: categoryName };
         });
 
+        const isMayorista = pathname.includes("mayorista");
+
         // Iterar sobre las categorías abiertas
         for (const category of openedCategoriesWithIds) {
           // Obtener las subcategorías actualizadas para cada categoría abierta
