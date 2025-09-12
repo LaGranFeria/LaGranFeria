@@ -1043,29 +1043,29 @@ function ProductManager() {
     //   return false;
     // }
 
-    if (tipoPrecioMayorista === "Manual" && pMayorista1 === 0) {
-      Swal.fire({
-        icon: "error",
-        title: "El precio mayorista manual no puede estar vacío",
-        text: "Complete el campo",
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "#f27474",
-      }).then(() => setTimeout(() => $("#precioMayorista").focus(), 500));
-      if (modalTitle === "Registrar Producto") ShowSaveButton();
-      return false;
-    }
+    // if (tipoPrecioMayorista === "Manual" && pMayorista1 === 0) {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "El precio mayorista manual no puede estar vacío",
+    //     text: "Complete el campo",
+    //     confirmButtonText: "Aceptar",
+    //     confirmButtonColor: "#f27474",
+    //   }).then(() => setTimeout(() => $("#precioMayorista").focus(), 500));
+    //   if (modalTitle === "Registrar Producto") ShowSaveButton();
+    //   return false;
+    // }
 
-    if (tipoPrecioMayorista === "Porcentual" && porMayorista1 === 0) {
-      Swal.fire({
-        icon: "error",
-        title: "El porcentaje de ganancia mayorista no puede estar vacío",
-        text: "Complete el campo",
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "#f27474",
-      }).then(() => setTimeout(() => $("#porcentajeMayorista").focus(), 500));
-      if (modalTitle === "Registrar Producto") ShowSaveButton();
-      return false;
-    }
+    // if (tipoPrecioMayorista === "Porcentual" && porMayorista1 === 0) {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "El porcentaje de ganancia mayorista no puede estar vacío",
+    //     text: "Complete el campo",
+    //     confirmButtonText: "Aceptar",
+    //     confirmButtonColor: "#f27474",
+    //   }).then(() => setTimeout(() => $("#porcentajeMayorista").focus(), 500));
+    //   if (modalTitle === "Registrar Producto") ShowSaveButton();
+    //   return false;
+    // }
 
     if (
       precioMinorista > 0 &&
