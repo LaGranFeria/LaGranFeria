@@ -4423,7 +4423,8 @@ function ProductManager() {
                           }
                         >
                           {(product.disponibilidadCatalogo === 1 ||
-                            product.disponibilidadCatalogo === 3) && (
+                            product.disponibilidadCatalogo === 3 ||
+                            rolUsuario === "SuperAdmin") && (
                             <button
                               type="button"
                               className="btn btn-warning btn-edit"
