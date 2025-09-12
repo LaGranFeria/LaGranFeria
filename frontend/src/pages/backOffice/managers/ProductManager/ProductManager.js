@@ -1027,21 +1027,21 @@ function ProductManager() {
       return false;
     }
 
-    if (
-      tipoPrecioMayorista === "" &&
-      pMayorista1 === 0 &&
-      porMayorista1 === 0
-    ) {
-      Swal.fire({
-        icon: "error",
-        title: "El tipo de precio mayorista no puede estar vacío",
-        text: "Seleccione un tipo de precio mayorista",
-        confirmButtonText: "Aceptar",
-        confirmButtonColor: "#f27474",
-      }).then(() => setTimeout(() => $("#tipoPrecioMayorista").focus(), 500));
-      if (modalTitle === "Registrar Producto") ShowSaveButton();
-      return false;
-    }
+    // if (
+    //   tipoPrecioMayorista === "" &&
+    //   pMayorista1 === 0 &&
+    //   porMayorista1 === 0
+    // ) {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "El tipo de precio mayorista no puede estar vacío",
+    //     text: "Seleccione un tipo de precio mayorista",
+    //     confirmButtonText: "Aceptar",
+    //     confirmButtonColor: "#f27474",
+    //   }).then(() => setTimeout(() => $("#tipoPrecioMayorista").focus(), 500));
+    //   if (modalTitle === "Registrar Producto") ShowSaveButton();
+    //   return false;
+    // }
 
     if (tipoPrecioMayorista === "Manual" && pMayorista1 === 0) {
       Swal.fire({
