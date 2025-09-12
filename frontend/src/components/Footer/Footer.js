@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../../common/Context";
 
 import "./Footer.css";
@@ -20,6 +20,15 @@ function Footer() {
 
   const { instagram } = useContext(Context);
   const { urlInstagram } = useContext(Context);
+
+  const [isMinorista, setIsMinorista] = useState(false);
+
+  useEffect(() => {
+    const pathname = window.location.pathname.toLowerCase();
+    if (pathname.includes("minorista")) {
+      setIsMinorista(true);
+    }
+  }, []);
 
   return (
     <footer className="footer">
@@ -106,8 +115,8 @@ function Footer() {
                       telefonoEmpresa !== "" && <> - </>}
 
                     {telefonoEmpresa && telefonoEmpresa !== "" && (
-                      <a className="address" href={`tel:${telefonoEmpresa}`}>
-                        {telefonoEmpresa}
+                      <a className="address" href={`tel:${isMinorista ? "3513858870" : telefonoEmpresa}`}>
+                        {isMinorista ? "3513858870" : telefonoEmpresa}
                       </a>
                     )}
                   </p>
@@ -128,9 +137,12 @@ function Footer() {
                   )}
                 </p>
                 <p className="info-text">
-                  {telefonoEmpresa && telefonoEmpresa !== "" && (
-                    <a className="address" href={`tel:${telefonoEmpresa}`}>
-                      {telefonoEmpresa}
+                  {(telefonoEmpresa && telefonoEmpresa !== "") && (
+                    <a 
+                      className="address" 
+                      href={`tel:${isMinorista ? "3513858870" : telefonoEmpresa}`}
+                    >
+                      {isMinorista ? "3513858870" : telefonoEmpresa}
                     </a>
                   )}
                 </p>

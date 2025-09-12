@@ -1892,7 +1892,8 @@ const CatalogueCart = () => {
           }
 
           if (telefonoEmpresa !== null && telefonoEmpresa !== "") {
-            mensaje += `*Número de teléfono*:\n_${telefonoEmpresa}_\n\n`;
+            const telefonoMostrado = clientType === "Minorista" ? "3513858870" : telefonoEmpresa;
+            mensaje += `*Número de teléfono*:\n_${telefonoMostrado}_\n\n`;
           }
 
           if (nombreAbono.toLowerCase() == "transferencia") {
@@ -1957,7 +1958,7 @@ const CatalogueCart = () => {
 
         // Crear el enlace para abrir WhatsApp con el mensaje
         const encodedMensaje = encodeURIComponent(mensaje);
-        const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsapp}&text=${encodedMensaje}`;
+        const whatsappURL = `https://api.whatsapp.com/send?phone=${clientType === "Minorista" ? "3513858870" : whatsapp}&text=${encodedMensaje}`;
 
         // Redirigir directamente a la URL de WhatsApp
         window.location.href = whatsappURL;
@@ -2073,7 +2074,8 @@ const CatalogueCart = () => {
               }
 
               if (telefonoEmpresa !== null && telefonoEmpresa !== "") {
-                mensaje += `*Número de teléfono*:\n_${telefonoEmpresa}_\n\n`;
+                const telefonoMostrado = clientType === "Minorista" ? "3513858870" : telefonoEmpresa;
+                mensaje += `*Número de teléfono*:\n_${telefonoMostrado}_\n\n`;
               }
 
               if (nombreAbono.toLowerCase() == "transferencia") {
@@ -2144,7 +2146,7 @@ const CatalogueCart = () => {
 
             // Crear el enlace para abrir WhatsApp con el mensaje
             const encodedMensaje = encodeURIComponent(mensaje);
-            const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsapp}&text=${encodedMensaje}`;
+            const whatsappURL = `https://api.whatsapp.com/send?phone=${clientType === "Minorista" ? "3513858870" : whatsapp}&text=${encodedMensaje}`;
 
             // Redirigir directamente a la URL de WhatsApp
             window.location.href = whatsappURL;
