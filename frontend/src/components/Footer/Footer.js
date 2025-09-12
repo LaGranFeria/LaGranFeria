@@ -30,21 +30,30 @@ function Footer() {
     }
   }, []);
 
+  const fbName = isMinorista ? "La Gran Feria" : facebook;
+  const fbUrl = isMinorista
+    ? "https://www.facebook.com/p/La-Gran-Feria-100063696833813"
+    : urlFacebook;
+
+  const igName = isMinorista ? "lagranferia.ok" : instagram;
+  const igUrl = isMinorista
+    ? "https://www.instagram.com/lagranferia.ok"
+    : urlInstagram;
+
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-content-section-global">
           <div className="footer-content-section">
             <div className="footer-content-section">
-              {((facebook && facebook !== "") ||
-                (instagram && instagram !== "")) && (
+              {((fbName && fbName !== "") || (igName && igName !== "")) && (
                 <div className="social-media">
-                  {facebook && facebook !== "" && (
+                  {fbName && fbName !== "" && (
                     <div className="footer-content-section-left-social">
                       <a
-                        href={urlFacebook ? urlFacebook : "#"}
-                        target={urlFacebook ? "_blank" : ""}
-                        rel={urlFacebook ? "noopener noreferrer" : ""}
+                        href={fbUrl ? fbUrl : "#"}
+                        target={fbUrl ? "_blank" : ""}
+                        rel={fbUrl ? "noopener noreferrer" : ""}
                       >
                         <img
                           src={Facebook}
@@ -55,23 +64,23 @@ function Footer() {
                       <p className="social-title">
                         <a
                           className="social-title"
-                          href={urlFacebook ? urlFacebook : "#"}
-                          target={urlFacebook ? "_blank" : ""}
-                          rel={urlFacebook ? "noopener noreferrer" : ""}
+                          href={fbUrl ? fbUrl : "#"}
+                          target={fbUrl ? "_blank" : ""}
+                          rel={fbUrl ? "noopener noreferrer" : ""}
                         >
-                          {facebook}
+                          {fbName}
                         </a>
                       </p>
                     </div>
                   )}
 
-                  {instagram && instagram !== "" && (
+                  {igName && igName !== "" && (
                     <div className="footer-content-section-left-social">
                       <a
                         className="social-title"
-                        href={urlInstagram ? urlInstagram : "#"}
-                        target={urlInstagram ? "_blank" : ""}
-                        rel={urlInstagram ? "noopener noreferrer" : ""}
+                        href={igUrl ? igUrl : "#"}
+                        target={igUrl ? "_blank" : ""}
+                        rel={igUrl ? "noopener noreferrer" : ""}
                       >
                         <img
                           src={Instagram}
@@ -82,11 +91,11 @@ function Footer() {
                       <p className="social-title">
                         <a
                           className="social-title"
-                          href={urlInstagram ? urlInstagram : "#"}
-                          target={urlInstagram ? "_blank" : ""}
-                          rel={urlInstagram ? "noopener noreferrer" : ""}
+                          href={igUrl ? igUrl : "#"}
+                          target={igUrl ? "_blank" : ""}
+                          rel={igUrl ? "noopener noreferrer" : ""}
                         >
-                          {instagram}
+                          {igName}
                         </a>
                       </p>
                     </div>
@@ -115,7 +124,12 @@ function Footer() {
                       telefonoEmpresa !== "" && <> - </>}
 
                     {telefonoEmpresa && telefonoEmpresa !== "" && (
-                      <a className="address" href={`tel:${isMinorista ? "3513858870" : telefonoEmpresa}`}>
+                      <a
+                        className="address"
+                        href={`tel:${
+                          isMinorista ? "3513858870" : telefonoEmpresa
+                        }`}
+                      >
                         {isMinorista ? "3513858870" : telefonoEmpresa}
                       </a>
                     )}
@@ -137,10 +151,12 @@ function Footer() {
                   )}
                 </p>
                 <p className="info-text">
-                  {(telefonoEmpresa && telefonoEmpresa !== "") && (
-                    <a 
-                      className="address" 
-                      href={`tel:${isMinorista ? "3513858870" : telefonoEmpresa}`}
+                  {telefonoEmpresa && telefonoEmpresa !== "" && (
+                    <a
+                      className="address"
+                      href={`tel:${
+                        isMinorista ? "3513858870" : telefonoEmpresa
+                      }`}
                     >
                       {isMinorista ? "3513858870" : telefonoEmpresa}
                     </a>
