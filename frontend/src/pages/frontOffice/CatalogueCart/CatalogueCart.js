@@ -9,8 +9,6 @@ import Mantenimiento from "../../../components/Mantenimiento/Mantenimiento";
 
 import * as signalR from "@microsoft/signalr";
 
-import { Tooltip } from "@mui/material"
-
 import {
   GetCategoriesMinorista,
   GetCategoriesMayorista,
@@ -5120,19 +5118,18 @@ const CatalogueCart = () => {
                                   Horarios de atención:
                                 </label>
                                 <div className="form-group-input desc-input">
-                                  <Tooltip title={horariosAtencion}>
-                                    <input
-                                      type="text"
-                                      className="input2"
-                                      id="horariosDeAtencion"
-                                      value={horariosAtencion}
-                                      style={{
-                                        backgroundColor: "#d3d3d3",
-                                        cursor: "default",
-                                      }}
-                                      readOnly
-                                    />
-                                  </Tooltip>
+                                  <input
+                                    type="text"
+                                    className="input2"
+                                    id="horariosDeAtencion"
+                                    value={horariosAtencion}
+                                    title={horariosAtencion}
+                                    style={{
+                                      backgroundColor: "#d3d3d3",
+                                      cursor: "default",
+                                    }}
+                                    readOnly
+                                  />
                                 </div>
                               </>
                             )}
