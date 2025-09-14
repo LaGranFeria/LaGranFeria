@@ -9,7 +9,7 @@ import Mantenimiento from "../../../components/Mantenimiento/Mantenimiento";
 
 import * as signalR from "@microsoft/signalr";
 
-import Tooltip from "@mui/material/Tooltip";
+import { Tooltip } from "@mui/material"
 
 import {
   GetCategoriesMinorista,
