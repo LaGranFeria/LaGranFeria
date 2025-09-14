@@ -5123,6 +5123,7 @@ const CatalogueCart = () => {
                                     className="input2"
                                     id="horariosDeAtencion"
                                     value={horariosAtencion}
+                                    title={horariosAtencion}
                                     style={{
                                       backgroundColor: "#d3d3d3",
                                       cursor: "default",
